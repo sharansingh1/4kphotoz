@@ -1,103 +1,293 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Camera,
+  Palette,
+  Printer,
+  CameraIcon,
+  ArrowRight,
+  Users,
+  Zap,
+  Scale,
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-black text-white scroll-smooth">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Orange Gradient Blob */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+          <div className="w-[800px] h-[800px] bg-gradient-to-r from-orange-600 via-red-500 to-yellow-400 rounded-full blur-[180px] opacity-70 animate-pulse" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+            Your #1 <span className="italic text-orange-400">Photography</span> & Print Solution
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+            Serving California with{" "}
+            <span className="font-semibold text-orange-400">blazing fast</span>{" "}
+            turnaround times
+          </p>
+
+          <button
+            onClick={() =>
+              document.querySelector("#services")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
+            className="inline-flex items-center px-10 py-4 text-lg font-semibold rounded-full 
+             bg-gradient-to-r from-orange-500 to-red-500 
+             hover:from-orange-600 hover:to-red-600 
+             shadow-lg shadow-orange-500/30
+             transition-all duration-500 ease-out 
+             transform hover:-translate-y-1 hover:scale-105"
+          >
+            Learn More
+            <ArrowRight className="ml-3 w-6 h-6" />
+          </button>
+
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8">
+              We are an{" "}
+              <span className="italic text-orange-400">extension</span> of your
+              creative team
+            </h2>
+            <p className="text-lg font-body text-white/80 leading-relaxed">
+              At 4kphotoz, we bring photography, design, and print services
+              together under one roof. Founded in the Bay Area, we've partnered
+              with schools, organizations, and businesses across California to
+              create visuals that stand out, tell stories, and make a lasting
+              impact.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Services Overview */}
+      <section id="services" className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+              What We Do
+            </h2>
+            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+              From concept to completion, we deliver exceptional results across
+              all our services
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Photography */}
+            <div className="group text-center p-8 rounded-2xl bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
+                <Camera className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Photography
+              </h3>
+              <p className="text-white/70 font-body text-sm leading-relaxed">
+                From sports and events to portraits and marketing campaigns, we
+                capture the moments that matter.
+              </p>
+            </div>
+
+            {/* Graphic Design */}
+            <div className="group text-center p-8 rounded-2xl bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
+                <Palette className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Graphic Design
+              </h3>
+              <p className="text-white/70 font-body text-sm leading-relaxed">
+                Posters, banners, branding, and custom graphics built to make
+                your message pop.
+              </p>
+            </div>
+
+            {/* Print Lab */}
+            <div className="group text-center p-8 rounded-2xl bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
+                <Printer className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Print Lab
+              </h3>
+              <p className="text-white/70 font-body text-sm leading-relaxed">
+                In-house printing with blazing fast turnaround — banners,
+                posters, stickers, and everything in between.
+              </p>
+            </div>
+
+            {/* Photo Booth */}
+            <div className="group text-center p-8 rounded-2xl bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
+                <CameraIcon className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Photo Booth
+              </h3>
+              <p className="text-white/70 font-body text-sm leading-relaxed">
+                Modern, fun, and customizable booths to bring energy and
+                memories to any event.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Work */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+              Featured Work
+            </h2>
+            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+              A selection of our standout visuals that showcase our creative
+              capabilities
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <div
+                key={item}
+                className="group relative overflow-hidden rounded-2xl bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src="/nature.jpg"
+                    alt={`Featured photography work ${item}`}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Button
+                      variant="outline"
+                      className="border-white text-white hover:bg-white hover:text-black"
+                    >
+                      View Gallery
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-white"
+            >
+              <Link href="/photography">View All Work</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+              Why Choose Us
+            </h2>
+            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+              We deliver exceptional results with unmatched speed and quality
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                All-in-One Solution
+              </h3>
+              <p className="text-white/70 font-body">
+                Photography, design, and print under one roof. Streamline your
+                workflow and save time.
+              </p>
+            </div>
+
+            <div className="text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
+                <Zap className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Blazing Fast Turnaround
+              </h3>
+              <p className="text-white/70 font-body">
+                From idea to finished product, we move quick without cutting
+                corners.
+              </p>
+            </div>
+
+            <div className="text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
+                <Scale className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-accent font-semibold text-white mb-4">
+                Built for Any Size Project
+              </h3>
+              <p className="text-white/70 font-body">
+                Whether it's a single banner or a full-school media day, our
+                team scales to match your vision.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg font-body text-white/80 mb-12">
+              Let's discuss your project and bring your vision to life
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-4"
+              >
+                <Link href="/contact">Get Quote</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4"
+              >
+                <Link href="tel:+15108281061">Call (510) 828-1061</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
