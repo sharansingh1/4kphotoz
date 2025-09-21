@@ -19,26 +19,30 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      const result = await res.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -222,7 +226,7 @@ export default function ContactPage() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
                         <option value="">Select a service</option>
                         <option value="photography">Photography</option>
