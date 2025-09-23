@@ -13,13 +13,13 @@ export default function PrintLabPage() {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-black">
+      <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6">
               Print Lab
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 font-body mb-8">
+            <p className="text-xl md:text-2xl text-foreground/70 font-body mb-8">
               Prints that pop, <span className="gradient-text">quality you can trust.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,13 +33,13 @@ export default function PrintLabPage() {
       </section>
 
       {/* Services Grid */}
-      <section id="services" className="py-20 bg-black">
+      <section id="services" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Our Print Products
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               High-quality printing services with blazing fast turnaround times
             </p>
           </div>
@@ -54,14 +54,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Flag className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Banners</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Banners</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Durable, high-impact banners for schools, events, and businesses.
                 </p>
               </div>
@@ -76,14 +76,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <ImageIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Posters</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Posters</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Custom posters in any size — from small handouts to massive wall pieces.
                 </p>
               </div>
@@ -98,14 +98,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <CreditCard className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Business Cards</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Business Cards</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Professional cards that leave the right impression, available in multiple finishes and styles.
                 </p>
               </div>
@@ -120,14 +120,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Sticker className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Stickers & Decals</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Stickers & Decals</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Custom shapes, sizes, and finishes — perfect for branding or giveaways.
                 </p>
               </div>
@@ -142,14 +142,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <FileText className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Flyers & Brochures</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Flyers & Brochures</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Handouts that spread the word with clarity and style.
                 </p>
               </div>
@@ -164,14 +164,14 @@ export default function PrintLabPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Package className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Packaging & Labels</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Packaging & Labels</h3>
+                <p className="text-foreground/70 font-body text-sm leading-relaxed">
                   Branded packaging to bring your products to life.
                 </p>
               </div>
@@ -181,13 +181,13 @@ export default function PrintLabPage() {
       </section>
 
       {/* Print Capabilities */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Our Print Capabilities
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               State-of-the-art equipment and premium materials for exceptional results
             </p>
           </div>
@@ -197,8 +197,8 @@ export default function PrintLabPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Printer className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">High-Resolution Printing</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">High-Resolution Printing</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Crisp, vibrant prints with professional-grade equipment and premium inks.
               </p>
             </div>
@@ -207,8 +207,8 @@ export default function PrintLabPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Zap className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Fast Turnaround</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Fast Turnaround</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Most orders completed within 24-48 hours without compromising quality.
               </p>
             </div>
@@ -217,8 +217,8 @@ export default function PrintLabPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Premium Materials</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Premium Materials</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 High-quality papers, vinyls, and substrates for lasting durability.
               </p>
             </div>
@@ -227,8 +227,8 @@ export default function PrintLabPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Quality Guarantee</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Quality Guarantee</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 100% satisfaction guarantee on all our print products.
               </p>
             </div>
@@ -237,13 +237,13 @@ export default function PrintLabPage() {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Print Gallery
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               Examples of our high-quality print work across different product types
             </p>
           </div>
@@ -259,9 +259,9 @@ export default function PrintLabPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+                    <Button variant="outline" className="border-white text-foreground hover:bg-white hover:text-black">
                       View Details
                     </Button>
                   </div>
@@ -273,18 +273,18 @@ export default function PrintLabPage() {
       </section>
 
       {/* Everything In Between */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8">
               And Everything In Between
             </h2>
-            <p className="text-lg text-white/70 font-body mb-8">
+            <p className="text-lg text-foreground/70 font-body mb-8">
               If you can think of it, we can print it. From custom sizes to unique materials, 
               we're equipped to handle any printing challenge you throw our way.
             </p>
-            <div className="bg-black rounded-2xl p-8 mb-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-white/70 font-body">
+            <div className="bg-background rounded-2xl p-8 mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-foreground/70 font-body">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
                     <CheckCircle className="w-6 h-6 text-primary" />
@@ -341,20 +341,20 @@ export default function PrintLabPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8">
               Ready to Print Your Vision?
             </h2>
-            <p className="text-lg text-white/70 font-body mb-12">
+            <p className="text-lg text-foreground/70 font-body mb-12">
               Let's bring your designs to life with our professional printing services
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-4">
                 <Link href="/contact">Print With Us</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4">
+              <Button asChild variant="outline" size="lg" className="border-white text-foreground hover:bg-white hover:text-black text-lg px-8 py-4">
                 <Link href="tel:+15108281061">Call (510) 828-1061</Link>
               </Button>
             </div>

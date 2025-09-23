@@ -19,7 +19,7 @@ export default function Header() {
   }, []);
 
   const navigation = [
-    { name: 'Home', href: '/' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Photography', href: '/photography' },
     { name: 'Graphic Design', href: '/graphic-design' },
     { name: 'Print Lab', href: '/print-lab' },
@@ -34,8 +34,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl lg:text-3xl font-display font-bold text-white group-hover:gradient-text transition-all duration-300">
+          <Link href="/" className="flex items-center space-x-2 group mr-8">
+            <div className="text-2xl lg:text-3xl font-display font-bold text-foreground group-hover:gradient-text transition-all duration-300">
               4kphotoz
             </div>
           </Link>
@@ -46,31 +46,15 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-primary transition-colors duration-200 font-accent font-medium"
+                className="text-foreground hover:text-primary transition-colors duration-200 font-accent font-medium"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* Contact Info & CTA */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <div className="flex items-center space-x-4 text-sm text-white/80 font-body">
-              <a
-                href="mailto:info@4kphotoz.com"
-                className="flex items-center space-x-1 hover:text-primary transition-colors duration-200"
-              >
-                <Mail className="w-4 h-4" />
-                <span>info@4kphotoz.com</span>
-              </a>
-              <a
-                href="tel:+15108281061"
-                className="flex items-center space-x-1 hover:text-primary transition-colors duration-200"
-              >
-                <Phone className="w-4 h-4" />
-                <span>(510) 828-1061</span>
-              </a>
-            </div>
+          {/* CTA */}
+          <div className="hidden lg:flex items-center">
             <Button asChild className="gradient-bg hover:opacity-90 transition-opacity duration-200">
               <Link href="/contact">Get Quote</Link>
             </Button>
@@ -79,7 +63,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white hover:text-primary transition-colors duration-200"
+            className="lg:hidden text-foreground hover:text-primary transition-colors duration-200"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -94,30 +78,14 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-primary transition-colors duration-200 font-medium py-2"
+                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-white/20">
-                <div className="flex flex-col space-y-3 text-sm text-white/80">
-                  <a
-                    href="mailto:info@4kphotoz.com"
-                    className="flex items-center space-x-2 hover:text-primary transition-colors duration-200"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>info@4kphotoz.com</span>
-                  </a>
-                  <a
-                    href="tel:+15108281061"
-                    className="flex items-center space-x-2 hover:text-primary transition-colors duration-200"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>(510) 828-1061</span>
-                  </a>
-                </div>
-                <Button asChild className="w-full mt-4 gradient-bg hover:opacity-90 transition-opacity duration-200">
+              <div className="pt-4 border-t border-border">
+                <Button asChild className="w-full gradient-bg hover:opacity-90 transition-opacity duration-200">
                   <Link href="/contact">Get Quote</Link>
                 </Button>
               </div>

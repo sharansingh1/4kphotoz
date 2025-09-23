@@ -5,21 +5,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #ff6b35;
-  --primary-foreground: #000000;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ffffff;
-  --muted: #1a1a1a;
-  --muted-foreground: #ffffff;
-  --accent: #ff6b35;
-  --accent-foreground: #000000;
-  --destructive: #ff4444;
+  --background: #ffffff;
+  --foreground: #1f2937;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f8fafc;
+  --secondary-foreground: #1f2937;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #333333;
-  --input: #1a1a1a;
-  --ring: #ff6b35;
+  --border: #e2e8f0;
+  --input: #f8fafc;
+  --ring: #2563eb;
   --radius: 0.5rem;
   
   /* Professional Font Variables */
@@ -109,7 +109,7 @@ body {
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -117,18 +117,18 @@ body {
   }
   
   .gradient-bg {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
     color: var(--primary-foreground);
   }
   
   .gradient-bg:hover {
-    background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
   }
   
   .glass {
     backdrop-filter: blur(16px);
-    background: rgba(0, 0, 0, 0.9);
-    border: 1px solid rgba(255, 107, 53, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(37, 99, 235, 0.2);
   }
   
   .animate-fade-in {
@@ -196,14 +196,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff6b35;
+  background: #2563eb;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff8c42;
+  background: #1d4ed8;
 }

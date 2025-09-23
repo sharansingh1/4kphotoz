@@ -13,13 +13,13 @@ export default function PhotographyPage() {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-black">
+      <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6">
               Photography
             </h1>
-            <p className="text-xl md:text-2xl font-body text-white/80 mb-8">
+            <p className="text-xl md:text-2xl font-body text-muted-foreground mb-8">
               Professional photography for every occasion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,20 +33,21 @@ export default function PhotographyPage() {
       </section>
 
       {/* Services Grid */}
-      <section id="services" className="py-20 bg-black">
+      <section id="services" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Our Photography Services
             </h2>
-            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg font-body text-muted-foreground max-w-2xl mx-auto">
               From intimate portraits to large-scale events, we capture every moment with precision and artistry
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* First row - 3 services */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             {/* Portraits */}
-            <div className="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+            <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
                   src="/nature.jpg"
@@ -54,21 +55,21 @@ export default function PhotographyPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Portraits</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Portraits</h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">
                   Individual and group portraits with a polished, professional look. Perfect for seniors, couples, families, and everyone in between.
                 </p>
               </div>
             </div>
 
             {/* Events */}
-            <div className="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+            <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
                   src="/nature.jpg"
@@ -76,21 +77,21 @@ export default function PhotographyPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Camera className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Events</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Events</h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">
                   From school dances and graduations to corporate gatherings and community celebrations, we capture the moments that matter most.
                 </p>
               </div>
             </div>
 
             {/* Media Day */}
-            <div className="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
+            <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
                   src="/nature.jpg"
@@ -98,60 +99,65 @@ export default function PhotographyPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-colors duration-300" />
               </div>
               <div className="p-8">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                   <Trophy className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Media Day</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
+                <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Media Day</h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">
                   Complete athletic media day setups with lighting, backdrops, and custom graphics to showcase your team in style.
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Sports Action */}
-            <div className="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
-              <div className="aspect-video relative">
-                <Image
-                  src="/nature.jpg"
-                  alt="High-energy sports action photography covering games, tournaments, and competitions - freezing big plays and highlight moments"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-              </div>
-              <div className="p-8">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
-                  <Target className="w-6 h-6 text-primary" />
+          {/* Second row - 2 services centered */}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+              {/* Sports Action */}
+              <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
+                <div className="aspect-video relative">
+                  <Image
+                    src="/nature.jpg"
+                    alt="High-energy sports action photography covering games, tournaments, and competitions - freezing big plays and highlight moments"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Sports Action</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
-                  High-energy coverage of games, tournaments, and competitions — freezing the big plays and highlight moments that deserve to be remembered.
-                </p>
+                <div className="p-8">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Sports Action</h3>
+                  <p className="text-muted-foreground font-body text-sm leading-relaxed">
+                    High-energy coverage of games, tournaments, and competitions — freezing the big plays and highlight moments that deserve to be remembered.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Marketing & Branding */}
-            <div className="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/10">
-              <div className="aspect-video relative">
-                <Image
-                  src="/nature.jpg"
-                  alt="Clean, creative marketing and branding photography helping schools, businesses, and organizations stand out on socials and in print"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-              </div>
-              <div className="p-8">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
-                  <Palette className="w-6 h-6 text-primary" />
+              {/* Marketing & Branding */}
+              <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
+                <div className="aspect-video relative">
+                  <Image
+                    src="/nature.jpg"
+                    alt="Clean, creative marketing and branding photography helping schools, businesses, and organizations stand out on socials and in print"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-accent font-semibold text-white mb-4">Marketing & Branding</h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed">
-                  Clean, creative visuals that help schools, businesses, and organizations stand out on socials, in person with prints, and everywhere else.
-                </p>
+                <div className="p-8">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                    <Palette className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Marketing & Branding</h3>
+                  <p className="text-muted-foreground font-body text-sm leading-relaxed">
+                    Clean, creative visuals that help schools, businesses, and organizations stand out on socials, in person with prints, and everywhere else.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -159,47 +165,47 @@ export default function PhotographyPage() {
       </section>
 
       {/* Enterprise Services */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Enterprise-Level Services
             </h2>
-            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg font-body text-muted-foreground max-w-2xl mx-auto">
               Specialized services designed for schools, leagues, and large organizations
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Sports Portraits */}
-            <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="bg-muted rounded-2xl p-8 border border-border">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-4">
                   <Trophy className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-white">Sports Portraits</h3>
+                <h3 className="text-2xl font-display font-bold text-foreground">Sports Portraits</h3>
               </div>
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Full-day athletic portrait setups with professional lighting and backdrops</p>
+                  <p className="text-muted-foreground font-body">Full-day athletic portrait setups with professional lighting and backdrops</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Capable of photographing 100+ athletes in a single day</p>
+                  <p className="text-muted-foreground font-body">Capable of photographing 100+ athletes in a single day</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Secure, individual family access to each athlete's photos</p>
+                  <p className="text-muted-foreground font-body">Secure, individual family access to each athlete's photos</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Affordable downloads priced below industry competitors</p>
+                  <p className="text-muted-foreground font-body">Affordable downloads priced below industry competitors</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Print options including premium finishes</p>
+                  <p className="text-muted-foreground font-body">Print options including premium finishes</p>
                 </div>
               </div>
 
@@ -214,34 +220,34 @@ export default function PhotographyPage() {
             </div>
 
             {/* Little League Photography */}
-            <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
+            <div className="bg-muted rounded-2xl p-8 border border-border">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mr-4">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-white">Little League Photography</h3>
+                <h3 className="text-2xl font-display font-bold text-foreground">Little League Photography</h3>
               </div>
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Organized league-wide shoots with efficient scheduling</p>
+                  <p className="text-muted-foreground font-body">Organized league-wide shoots with efficient scheduling</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Individual and team portraits delivered via private family galleries</p>
+                  <p className="text-muted-foreground font-body">Individual and team portraits delivered via private family galleries</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Optional custom team banners and individual athlete banner designs</p>
+                  <p className="text-muted-foreground font-body">Optional custom team banners and individual athlete banner designs</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Fast turnaround with digital downloads and print packages</p>
+                  <p className="text-muted-foreground font-body">Fast turnaround with digital downloads and print packages</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-white/70 font-body">Lower cost for families compared to traditional providers</p>
+                  <p className="text-muted-foreground font-body">Lower cost for families compared to traditional providers</p>
                 </div>
               </div>
 
@@ -259,13 +265,13 @@ export default function PhotographyPage() {
       </section>
 
       {/* Why Choose Our Photography */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Why Choose Our Photography
             </h2>
-            <p className="text-lg font-body text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg font-body text-muted-foreground max-w-2xl mx-auto">
               Professional results with unmatched service and value
             </p>
           </div>
@@ -275,8 +281,8 @@ export default function PhotographyPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Clock className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Fast Turnaround</h3>
-              <p className="text-white/70 font-body">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Fast Turnaround</h3>
+              <p className="text-muted-foreground font-body">
                 Quick delivery without compromising quality. Get your photos when you need them.
               </p>
             </div>
@@ -285,8 +291,8 @@ export default function PhotographyPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Shield className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Secure Galleries</h3>
-              <p className="text-white/70 font-body">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Secure Galleries</h3>
+              <p className="text-muted-foreground font-body">
                 Private, password-protected galleries for easy viewing and downloading.
               </p>
             </div>
@@ -295,8 +301,8 @@ export default function PhotographyPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Download className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Affordable Downloads</h3>
-              <p className="text-white/70 font-body">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Affordable Downloads</h3>
+              <p className="text-muted-foreground font-body">
                 High-quality digital downloads at prices below industry standards.
               </p>
             </div>
@@ -305,20 +311,20 @@ export default function PhotographyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8">
               Ready to Capture Your Moments?
             </h2>
-            <p className="text-lg font-body text-white/80 mb-12">
+            <p className="text-lg font-body text-muted-foreground mb-12">
               Let's discuss your photography needs and create something amazing together
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-4">
                 <Link href="/contact">Get In Touch</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4">
+              <Button asChild variant="outline" size="lg" className="border-foreground text-foreground hover:bg-foreground hover:text-background text-lg px-8 py-4">
                 <Link href="tel:+15108281061">Call (510) 828-1061</Link>
               </Button>
             </div>

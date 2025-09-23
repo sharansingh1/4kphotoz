@@ -54,13 +54,13 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-black">
+      <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6">
               Get In Touch
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 font-body mb-8">
+            <p className="text-xl md:text-2xl text-foreground/70 font-body mb-8">
               Ready to bring your vision to life? Let's discuss your project.
             </p>
           </div>
@@ -68,12 +68,12 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info & Form */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-display font-bold text-white mb-8">Contact Information</h2>
+              <h2 className="text-3xl font-display font-bold text-foreground mb-8">Contact Information</h2>
               
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
@@ -81,8 +81,8 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-accent font-semibold text-white mb-2">Address</h3>
-                    <p className="text-white/70 font-body">
+                    <h3 className="text-xl font-accent font-semibold text-foreground mb-2">Address</h3>
+                    <p className="text-foreground/70 font-body">
                       25509 Industrial Blvd, O10<br />
                       Hayward, CA 94545
                     </p>
@@ -94,8 +94,8 @@ export default function ContactPage() {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-accent font-semibold text-white mb-2">Phone</h3>
-                    <p className="text-white/70 font-body">
+                    <h3 className="text-xl font-accent font-semibold text-foreground mb-2">Phone</h3>
+                    <p className="text-foreground/70 font-body">
                       <a href="tel:+15108281061" className="hover:text-primary transition-colors duration-200">
                         (510) 828-1061
                       </a>
@@ -108,13 +108,13 @@ export default function ContactPage() {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-accent font-semibold text-white mb-2">Email</h3>
-                    <p className="text-white/70 font-body">
+                    <h3 className="text-xl font-accent font-semibold text-foreground mb-2">Email</h3>
+                    <p className="text-foreground/70 font-body">
                       <a href="mailto:info@4kphotoz.com" className="hover:text-primary transition-colors duration-200">
                         info@4kphotoz.com
                       </a>
                     </p>
-                    <p className="text-white/70 font-body">
+                    <p className="text-foreground/70 font-body">
                       <a href="mailto:support@4kphotoz.com" className="hover:text-primary transition-colors duration-200">
                         support@4kphotoz.com
                       </a>
@@ -127,8 +127,8 @@ export default function ContactPage() {
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-accent font-semibold text-white mb-2">Business Hours</h3>
-                    <p className="text-white/70 font-body">
+                    <h3 className="text-xl font-accent font-semibold text-foreground mb-2">Business Hours</h3>
+                    <p className="text-foreground/70 font-body">
                       Monday - Friday: 9:00 AM - 6:00 PM<br />
                       Saturday: 10:00 AM - 4:00 PM<br />
                       Sunday: By Appointment
@@ -145,9 +145,9 @@ export default function ContactPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
+                  <div className="text-center text-foreground">
                     <h3 className="text-2xl font-display font-bold mb-2">Visit Our Studio</h3>
                     <p className="text-lg">See our equipment and meet our team</p>
                   </div>
@@ -157,13 +157,13 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-display font-bold text-white mb-8">Send Us a Message</h2>
+              <h2 className="text-3xl font-display font-bold text-foreground mb-8">Send Us a Message</h2>
               
               {isSubmitted ? (
                 <div className="bg-green-900/20 border border-green-500/50 rounded-2xl p-8 text-center">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-display font-bold text-white mb-2">Message Sent!</h3>
-                  <p className="text-white/70 font-body">
+                  <h3 className="text-2xl font-display font-bold text-foreground mb-2">Message Sent!</h3>
+                  <p className="text-foreground/70 font-body">
                     Thank you for your message. We'll get back to you within 24 hours.
                   </p>
                 </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                         Name *
                       </label>
                       <input
@@ -181,12 +181,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                         Email *
                       </label>
                       <input
@@ -196,7 +196,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -204,7 +204,7 @@ export default function ContactPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                         Phone
                       </label>
                       <input
@@ -213,12 +213,12 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="(555) 123-4567"
                       />
                     </div>
                     <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-white mb-2">
+                      <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
                         Service Interest
                       </label>
                       <select
@@ -240,7 +240,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                       Message *
                     </label>
                     <textarea
@@ -250,7 +250,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       placeholder="Tell us about your project, event details, or any questions you have..."
                     />
                   </div>
@@ -280,42 +280,42 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               Quick answers to common questions about our services
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-black rounded-2xl p-8">
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">How fast is your turnaround?</h3>
-              <p className="text-white/70 font-body">
+            <div className="bg-background rounded-2xl p-8">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">How fast is your turnaround?</h3>
+              <p className="text-foreground/70 font-body">
                 Most photography projects are delivered within 24-72 hours. Print orders typically complete within 24-48 hours. We pride ourselves on our blazing fast turnaround times.
               </p>
             </div>
 
-            <div className="bg-black rounded-2xl p-8">
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Do you travel for events?</h3>
-              <p className="text-white/70 font-body">
+            <div className="bg-background rounded-2xl p-8">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Do you travel for events?</h3>
+              <p className="text-foreground/70 font-body">
                 Yes! We serve all of California and are happy to travel for events. Contact us for travel quotes and availability for your location.
               </p>
             </div>
 
-            <div className="bg-black rounded-2xl p-8">
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">What file formats do you provide?</h3>
-              <p className="text-white/70 font-body">
+            <div className="bg-background rounded-2xl p-8">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">What file formats do you provide?</h3>
+              <p className="text-foreground/70 font-body">
                 We provide high-resolution JPEG files by default, with RAW files available upon request. All files are optimized for both print and digital use.
               </p>
             </div>
 
-            <div className="bg-black rounded-2xl p-8">
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Do you offer package deals?</h3>
-              <p className="text-white/70 font-body">
+            <div className="bg-background rounded-2xl p-8">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Do you offer package deals?</h3>
+              <p className="text-foreground/70 font-body">
                 Absolutely! We offer discounted packages for multiple services. Contact us to discuss custom packages that fit your needs and budget.
               </p>
             </div>

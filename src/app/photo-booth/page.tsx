@@ -13,13 +13,13 @@ export default function PhotoBoothPage() {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-black">
+      <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6">
               Photo Booth
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 font-body mb-8">
+            <p className="text-xl md:text-2xl text-foreground/70 font-body mb-8">
               Instant memories, <span className="gradient-text">endless smiles.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,13 +33,13 @@ export default function PhotoBoothPage() {
       </section>
 
       {/* Booth Options */}
-      <section id="booths" className="py-20 bg-black">
+      <section id="booths" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Choose Your Booth Experience
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               Two amazing options to bring fun and memories to your event
             </p>
           </div>
@@ -54,9 +54,9 @@ export default function PhotoBoothPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-accent font-semibold">
+                  <div className="bg-primary/90 text-foreground px-4 py-2 rounded-lg text-center font-accent font-semibold">
                     $75/hour
                   </div>
                 </div>
@@ -66,25 +66,25 @@ export default function PhotoBoothPage() {
                   <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
                     <Monitor className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-white">Mirror Booth with Prints</h3>
+                  <h3 className="text-2xl font-display font-bold text-foreground">Mirror Booth with Prints</h3>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Sleek, interactive mirror booth with touchscreen</p>
+                    <p className="text-foreground/70 font-body">Sleek, interactive mirror booth with touchscreen</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Custom templates and unlimited instant prints</p>
+                    <p className="text-foreground/70 font-body">Custom templates and unlimited instant prints</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Online gallery included</p>
+                    <p className="text-foreground/70 font-body">Online gallery included</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Perfect for selfie lovers and tech-savvy guests</p>
+                    <p className="text-foreground/70 font-body">Perfect for selfie lovers and tech-savvy guests</p>
                   </div>
                 </div>
 
@@ -103,9 +103,9 @@ export default function PhotoBoothPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-primary/90 text-white px-4 py-2 rounded-lg text-center font-accent font-semibold">
+                  <div className="bg-primary/90 text-foreground px-4 py-2 rounded-lg text-center font-accent font-semibold">
                     $100/hour
                   </div>
                 </div>
@@ -115,25 +115,25 @@ export default function PhotoBoothPage() {
                   <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
                     <User className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-white">Stationary Booth with Photographer</h3>
+                  <h3 className="text-2xl font-display font-bold text-foreground">Stationary Booth with Photographer</h3>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Photographer-run booth with custom backdrops and lighting</p>
+                    <p className="text-foreground/70 font-body">Photographer-run booth with custom backdrops and lighting</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">All photos delivered digitally after the event</p>
+                    <p className="text-foreground/70 font-body">All photos delivered digitally after the event</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Online gallery included</p>
+                    <p className="text-foreground/70 font-body">Online gallery included</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <p className="text-white/70 font-body">Professional guidance and posing assistance</p>
+                    <p className="text-foreground/70 font-body">Professional guidance and posing assistance</p>
                   </div>
                 </div>
 
@@ -147,13 +147,13 @@ export default function PhotoBoothPage() {
       </section>
 
       {/* Features & Benefits */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Why Choose Our Photo Booths
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               Modern technology meets fun experiences for unforgettable memories
             </p>
           </div>
@@ -163,8 +163,8 @@ export default function PhotoBoothPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Zap className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Instant Fun</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Instant Fun</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Immediate prints and digital sharing for instant gratification and social media buzz.
               </p>
             </div>
@@ -173,8 +173,8 @@ export default function PhotoBoothPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Users className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Group Friendly</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Group Friendly</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Accommodates groups of all sizes with props and backdrops for everyone to enjoy.
               </p>
             </div>
@@ -183,8 +183,8 @@ export default function PhotoBoothPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Smile className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Customizable</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Customizable</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Personalized templates, backdrops, and props to match your event theme perfectly.
               </p>
             </div>
@@ -193,8 +193,8 @@ export default function PhotoBoothPage() {
               <div className="w-16 h-16 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
                 <Gift className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-accent font-semibold text-white mb-4">Memories Forever</h3>
-              <p className="text-white/70 font-body text-sm">
+              <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Memories Forever</h3>
+              <p className="text-foreground/70 font-body text-sm">
                 Digital gallery access ensures everyone can relive the fun long after the event.
               </p>
             </div>
@@ -203,13 +203,13 @@ export default function PhotoBoothPage() {
       </section>
 
       {/* Event Types */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Perfect for Any Event
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               From intimate gatherings to large celebrations, our photo booths add fun to every occasion
             </p>
           </div>
@@ -232,11 +232,11 @@ export default function PhotoBoothPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-300" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-accent font-semibold text-white mb-2">{event.name}</h3>
-                  <p className="text-white/70 font-body text-sm">{event.description}</p>
+                  <h3 className="text-xl font-accent font-semibold text-foreground mb-2">{event.name}</h3>
+                  <p className="text-foreground/70 font-body text-sm">{event.description}</p>
                 </div>
               </div>
             ))}
@@ -245,25 +245,25 @@ export default function PhotoBoothPage() {
       </section>
 
       {/* Pricing & Packages */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               Simple, Transparent Pricing
             </h2>
-            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
               No hidden fees, no surprises. Just great value for amazing memories.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-black rounded-2xl p-8 text-center">
+            <div className="bg-background rounded-2xl p-8 text-center">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Monitor className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-display font-bold text-white mb-4">Mirror Booth</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-4">Mirror Booth</h3>
               <div className="text-4xl font-display font-bold text-primary mb-6">$75<span className="text-lg text-gray-400">/hour</span></div>
-              <ul className="space-y-3 text-white/70 font-body text-left mb-8">
+              <ul className="space-y-3 text-foreground/70 font-body text-left mb-8">
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span>Interactive touchscreen interface</span>
@@ -290,13 +290,13 @@ export default function PhotoBoothPage() {
               </Button>
             </div>
 
-            <div className="bg-black rounded-2xl p-8 text-center">
+            <div className="bg-background rounded-2xl p-8 text-center">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <User className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-display font-bold text-white mb-4">Stationary Booth</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-4">Stationary Booth</h3>
               <div className="text-4xl font-display font-bold text-primary mb-6">$100<span className="text-lg text-gray-400">/hour</span></div>
-              <ul className="space-y-3 text-white/70 font-body text-left mb-8">
+              <ul className="space-y-3 text-foreground/70 font-body text-left mb-8">
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span>Professional photographer included</span>
@@ -325,8 +325,8 @@ export default function PhotoBoothPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-white/70 font-body mb-4">Need a custom package or have questions?</p>
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+            <p className="text-foreground/70 font-body mb-4">Need a custom package or have questions?</p>
+            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-foreground">
               <Link href="/contact">Contact Us</Link>
             </Button>
           </div>

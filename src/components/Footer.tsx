@@ -7,6 +7,7 @@ export default function Footer() {
   const navigation = {
     main: [
       { name: 'Home', href: '/' },
+      { name: 'Gallery', href: '/gallery' },
       { name: 'Photography', href: '/photography' },
       { name: 'Graphic Design', href: '/graphic-design' },
       { name: 'Print Lab', href: '/print-lab' },
@@ -42,11 +43,6 @@ export default function Footer() {
       icon: Youtube, // Using Youtube icon as placeholder for TikTok
     },
     {
-      name: 'YouTube',
-      href: 'https://youtube.com/@4kphotoz',
-      icon: Youtube,
-    },
-    {
       name: 'LinkedIn',
       href: 'https://linkedin.com/company/4kphotoz',
       icon: Linkedin,
@@ -54,29 +50,29 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <footer className="bg-background border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="text-2xl font-display font-bold text-white mb-4">4kphotoz</div>
-            <p className="text-white/70 font-body text-sm leading-relaxed mb-6">
+          <div>
+            <div className="text-2xl font-display font-bold text-foreground mb-3">4kphotoz</div>
+            <p className="text-muted-foreground font-body text-sm leading-relaxed mb-3">
               Creative solutions, born in the Bay. Your #1 photography and print solution serving California with blazing fast turnaround times.
             </p>
-            <div className="space-y-3 text-sm text-gray-400">
+            <div className="space-y-1 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-primary" />
                 <span>25509 Industrial Blvd, O10<br />Hayward, CA 94545</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary" />
-                <a href="tel:+15108281061" className="hover:text-white transition-colors duration-200">
+                <a href="tel:+15108281061" className="hover:text-foreground transition-colors duration-200">
                   (510) 828-1061
                 </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:info@4kphotoz.com" className="hover:text-white transition-colors duration-200">
+                <a href="mailto:info@4kphotoz.com" className="hover:text-foreground transition-colors duration-200">
                   info@4kphotoz.com
                 </a>
               </div>
@@ -85,13 +81,13 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-white font-accent font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="text-foreground font-accent font-semibold mb-3">Navigation</h3>
+            <ul className="space-y-1">
               {navigation.main.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm font-body"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-body"
                   >
                     {item.name}
                   </Link>
@@ -102,13 +98,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-accent font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="text-foreground font-accent font-semibold mb-3">Services</h3>
+            <ul className="space-y-1">
               {navigation.services.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm font-body"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-body"
                   >
                     {item.name}
                   </Link>
@@ -119,26 +115,26 @@ export default function Footer() {
 
           {/* Social & Newsletter */}
           <div>
-            <h3 className="text-white font-accent font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4 mb-6">
+            <h3 className="text-foreground font-accent font-semibold mb-3">Follow Us</h3>
+            <div className="flex space-x-4 mb-4">
               {social.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   aria-label={item.name}
                 >
                   <item.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-muted-foreground">
               <p className="mb-2">Ready to get started?</p>
               <Link
                 href="/contact"
-                className="inline-flex items-center text-primary hover:text-white transition-colors duration-200 font-medium"
+                className="inline-flex items-center text-primary hover:text-foreground transition-colors duration-200 font-medium"
               >
                 Get a quote today →
               </Link>
@@ -147,16 +143,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-400">
+        <div className="mt-6 pt-4 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0">
+            <div className="text-sm text-muted-foreground">
               © {currentYear} 4kphotoz LLC. All rights reserved.
             </div>
-            <div className="flex space-x-6 text-sm text-gray-400">
-              <Link href="/privacy" className="hover:text-white transition-colors duration-200">
+            <div className="flex space-x-6 text-sm text-muted-foreground">
+              <Link href="/privacy" className="hover:text-foreground transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white transition-colors duration-200">
+              <Link href="/terms" className="hover:text-foreground transition-colors duration-200">
                 Terms of Service
               </Link>
             </div>
