@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Photo Booth Rental Services | Mirror Booth & Stationary Booth | Bay Area California",
     description: "Professional photo booth rental services in California. Mirror photo booth ($75/hour) and stationary photo booth ($100/hour) with photographer. Perfect for weddings, parties, corporate events, and celebrations.",
-    url: "https://4kphotoz.com/photo-booth",
+    url: "https://4kphotoz.vercel.app/photo-booth",
     images: [
       {
-        url: "https://4kphotoz.com/photo-booth-og.jpg",
+        url: "https://4kphotoz.vercel.app/photo-booth-og.jpg",
         width: 1200,
         height: 630,
         alt: "Photo Booth Rental Services - Mirror Booth & Stationary Booth in Bay Area California",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     title: "Photo Booth Rental Services | Mirror Booth & Stationary Booth | Bay Area California",
     description: "Professional photo booth rental services in California. Mirror photo booth ($75/hour) and stationary photo booth ($100/hour) with photographer.",
-    images: ["https://4kphotoz.com/photo-booth-og.jpg"],
+    images: ["https://4kphotoz.vercel.app/photo-booth-og.jpg"],
   },
   alternates: {
-    canonical: "https://4kphotoz.com/photo-booth",
+    canonical: "https://4kphotoz.vercel.app/photo-booth",
   },
 };
 

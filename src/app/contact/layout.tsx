@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact 4kphotoz LLC | Professional Photography & Print Services | Hayward California",
     description: "Contact 4kphotoz LLC for professional photography, graphic design, print lab, and photo booth services. Located in Hayward, California. Call (510) 828-1061 or email info@4kphotoz.com for fast quotes.",
-    url: "https://4kphotoz.com/contact",
+    url: "https://4kphotoz.vercel.app/contact",
     images: [
       {
-        url: "https://4kphotoz.com/contact-og.jpg",
+        url: "https://4kphotoz.vercel.app/contact-og.jpg",
         width: 1200,
         height: 630,
         alt: "Contact 4kphotoz LLC - Professional Photography & Print Services in Hayward California",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     title: "Contact 4kphotoz LLC | Professional Photography & Print Services | Hayward California",
     description: "Contact 4kphotoz LLC for professional photography, graphic design, print lab, and photo booth services. Located in Hayward, California.",
-    images: ["https://4kphotoz.com/contact-og.jpg"],
+    images: ["https://4kphotoz.vercel.app/contact-og.jpg"],
   },
   alternates: {
-    canonical: "https://4kphotoz.com/contact",
+    canonical: "https://4kphotoz.vercel.app/contact",
   },
 };
 

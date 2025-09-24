@@ -74,13 +74,13 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://4kphotoz.com",
+    url: "https://4kphotoz.vercel.app",
     siteName: "4kphotoz LLC",
     title: "4kphotoz LLC - Professional Photography & Print Services | Bay Area California",
     description: "Professional photography, graphic design, print lab, and photo booth rentals in California. Serving Bay Area with blazing fast turnaround times. Sports photography, event photography, portraits, banners, posters, and more.",
     images: [
       {
-        url: "https://4kphotoz.com/og-image.jpg",
+        url: "https://4kphotoz.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "4kphotoz LLC - Professional Photography & Print Services in Bay Area California",
@@ -91,13 +91,13 @@ export const metadata = {
     card: "summary_large_image",
     title: "4kphotoz LLC - Professional Photography & Print Services | Bay Area California",
     description: "Professional photography, graphic design, print lab, and photo booth rentals in California. Serving Bay Area with blazing fast turnaround times.",
-    images: ["https://4kphotoz.com/og-image.jpg"],
+    images: ["https://4kphotoz.vercel.app/og-image.jpg"],
     creator: "@4kphotoz",
   },
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#ff6b35",
   alternates: {
-    canonical: "https://4kphotoz.com",
+    canonical: "https://4kphotoz.vercel.app",
   },
   verification: {
     google: "your-google-verification-code", // Replace with actual verification code from Google Search Console
@@ -121,9 +121,9 @@ export default function RootLayout({ children }) {
               "@type": "Organization",
               "name": "4kphotoz LLC",
               "description": "Professional photography, graphic design, print lab, and photo booth rental services serving California with blazing fast turnaround times",
-              "url": "https://4kphotoz.com",
-              "logo": "https://4kphotoz.com/logo.png",
-              "image": "https://4kphotoz.com/og-image.jpg",
+              "url": "https://4kphotoz.vercel.app",
+              "logo": "https://4kphotoz.vercel.app/logo.png",
+              "image": "https://4kphotoz.vercel.app/og-image.jpg",
               "foundingDate": "2020",
               "contactPoint": [
                 {

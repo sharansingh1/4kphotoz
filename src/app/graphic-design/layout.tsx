@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Professional Graphic Design Services | Logos, Posters, Banners & Social Media | California",
     description: "Professional graphic design services in California. Custom logos, posters, banners, social media graphics, business cards, flyers, and branding design. Unlimited revisions and fast turnaround.",
-    url: "https://4kphotoz.com/graphic-design",
+    url: "https://4kphotoz.vercel.app/graphic-design",
     images: [
       {
-        url: "https://4kphotoz.com/graphic-design-og.jpg",
+        url: "https://4kphotoz.vercel.app/graphic-design-og.jpg",
         width: 1200,
         height: 630,
         alt: "Professional Graphic Design Services - Logos, Posters, Banners & Social Media in California",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     title: "Professional Graphic Design Services | Logos, Posters, Banners & Social Media | California",
     description: "Professional graphic design services in California. Custom logos, posters, banners, social media graphics, business cards, flyers, and branding design.",
-    images: ["https://4kphotoz.com/graphic-design-og.jpg"],
+    images: ["https://4kphotoz.vercel.app/graphic-design-og.jpg"],
   },
   alternates: {
-    canonical: "https://4kphotoz.com/graphic-design",
+    canonical: "https://4kphotoz.vercel.app/graphic-design",
   },
 };
 

@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Professional Photography Services | Sports, Events & Portraits | Bay Area California",
     description: "Professional photography services in California. Sports photography, event photography, portraits, media day, athletic photography, school photography, and marketing photography. Fast turnaround times.",
-    url: "https://4kphotoz.com/photography",
+    url: "https://4kphotoz.vercel.app/photography",
     images: [
       {
-        url: "https://4kphotoz.com/photography-og.jpg",
+        url: "https://4kphotoz.vercel.app/photography-og.jpg",
         width: 1200,
         height: 630,
         alt: "Professional Photography Services - Sports, Events & Portraits in Bay Area California",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     title: "Professional Photography Services | Sports, Events & Portraits | Bay Area California",
     description: "Professional photography services in California. Sports photography, event photography, portraits, media day, athletic photography, school photography, and marketing photography.",
-    images: ["https://4kphotoz.com/photography-og.jpg"],
+    images: ["https://4kphotoz.vercel.app/photography-og.jpg"],
   },
   alternates: {
-    canonical: "https://4kphotoz.com/photography",
+    canonical: "https://4kphotoz.vercel.app/photography",
   },
 };
 

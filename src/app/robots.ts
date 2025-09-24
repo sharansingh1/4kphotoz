@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/', '/moreau-catholic/'],
       },
     ],
-    sitemap: 'https://4kphotoz.com/sitemap.xml',
-    host: 'https://4kphotoz.com',
+    sitemap: 'https://4kphotoz.vercel.app/sitemap.xml',
+    host: 'https://4kphotoz.vercel.app',
   }
 }

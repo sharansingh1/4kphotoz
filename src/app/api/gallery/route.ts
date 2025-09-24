@@ -153,7 +153,7 @@ export async function GET(request: NextRequest) {
 
     if (action === 'images' && albumId) {
       // Fetch images for specific album - single API call with limit and offset
-      const limit = searchParams.get('limit') || '20';
+      const limit = searchParams.get('limit') || '100';
       const offset = parseInt(searchParams.get('offset') || '0');
       
       // For better pagination, try different approaches
@@ -267,7 +267,7 @@ export async function GET(request: NextRequest) {
         if (album.payload.assetCount === 0) continue;
         
         try {
-          const assetsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${album.id}/assets?limit=20`, {
+          const assetsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${album.id}/assets?limit=100`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
               'x-api-key': ADOBE_CLIENT_ID!,

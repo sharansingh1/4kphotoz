@@ -31,10 +31,11 @@ export default function GalleryPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [imageLoadingStates, setImageLoadingStates] = useState<Record<string, boolean>>({});
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [visibleAlbums, setVisibleAlbums] = useState<Record<string, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    loadAlbums();
+    loadVisibleAlbums();
     
     // Setup intersection observer for better lazy loading
     observerRef.current = new IntersectionObserver(
@@ -72,6 +73,22 @@ export default function GalleryPage() {
     };
   }, [selectedAlbum]);
 
+  useEffect(() => {
+    if (Object.keys(visibleAlbums).length > 0 || albums.length === 0) {
+      loadAlbums();
+    }
+  }, [visibleAlbums]);
+
+  const loadVisibleAlbums = async () => {
+    try {
+      const response = await fetch('/api/admin/settings');
+      const data = await response.json();
+      setVisibleAlbums(data.visibleAlbums || {});
+    } catch (error) {
+      console.error('Error loading visible albums:', error);
+    }
+  };
+
   const loadAlbums = async () => {
     setLoading(true);
     try {
@@ -80,10 +97,6 @@ export default function GalleryPage() {
       
       if (data.albums) {
         // Filter albums based on admin visibility settings
-        const visibilityResponse = await fetch('/api/admin/settings');
-        const visibilityData = await visibilityResponse.json();
-        const visibleAlbums = visibilityData.visibleAlbums || {};
-        
         const filteredAlbums = data.albums.filter((album: Album) => {
           // Show album if it's not explicitly hidden (default to visible)
           return visibleAlbums[album.id] !== false;
