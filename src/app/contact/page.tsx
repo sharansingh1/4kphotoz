@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
@@ -15,6 +15,63 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [pageImages, setPageImages] = useState({
+    studio: '/nature.jpg',
+  });
+
+  // FAQ Schema for SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How fast is your turnaround?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most photography projects are delivered within 24-72 hours. Print orders typically complete within 24-48 hours. We pride ourselves on our blazing fast turnaround times."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "Do you travel for events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We serve all of California and are happy to travel for events. Contact us for travel quotes and availability for your location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats do you provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We provide high-resolution JPEG files by default, with RAW files available upon request. All files are optimized for both print and digital use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer package deals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! We offer discounted packages for multiple services. Contact us to discuss custom packages that fit your needs and budget."
+        }
+      }
+    ]
+  };
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.contact) {
+          setPageImages(data.pageImages.contact);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +109,14 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen pt-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema)
+        }}
+      />
+      <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,16 +204,16 @@ export default function ContactPage() {
               {/* Background Image */}
               <div className="mt-12 aspect-video relative rounded-2xl overflow-hidden">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.studio}
                   alt="4kphotoz LLC studio and office location in Hayward, California - professional photography and print services facility"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-foreground">
-                    <h3 className="text-2xl font-display font-bold mb-2">Visit Our Studio</h3>
-                    <p className="text-lg">See our equipment and meet our team</p>
+                  <div className="text-center bg-black/60 backdrop-blur-sm px-8 py-6 rounded-2xl border border-white/20">
+                    <h3 className="text-2xl font-display font-bold mb-2 text-white">Visit Our Studio</h3>
+                    <p className="text-lg text-white/90">See our equipment and meet our team</p>
                   </div>
                 </div>
               </div>
@@ -181,7 +245,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
@@ -196,7 +260,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -213,7 +277,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="(555) 123-4567"
                       />
                     </div>
@@ -226,7 +290,7 @@ export default function ContactPage() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
                         <option value="">Select a service</option>
                         <option value="photography">Photography</option>
@@ -250,7 +314,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       placeholder="Tell us about your project, event details, or any questions you have..."
                     />
                   </div>
@@ -322,6 +386,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

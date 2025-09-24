@@ -57,7 +57,7 @@ export default function Footer() {
           <div>
             <div className="text-2xl font-display font-bold text-foreground mb-3">4kphotoz</div>
             <p className="text-muted-foreground font-body text-sm leading-relaxed mb-3">
-              Creative solutions, born in the Bay. Your #1 photography and print solution serving California with blazing fast turnaround times.
+              Creative solutions, born in the Bay.
             </p>
             <div className="space-y-1 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">

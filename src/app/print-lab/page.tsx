@@ -1,15 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Printer, Flag, Image as ImageIcon, CreditCard, Sticker, FileText, Package, Zap, CheckCircle, Clock, Award } from "lucide-react";
 
-export const metadata = {
-  title: "Professional Print Lab Services - 4kphotoz LLC",
-  description: "Prints that pop, quality you can trust. Durable banners, posters, business cards, stickers, and everything in between with blazing fast turnaround.",
-  keywords: "print lab, banners, posters, business cards, stickers, flyers, brochures, packaging, printing services, California, Bay Area",
-};
-
 export default function PrintLabPage() {
+  const [pageImages, setPageImages] = useState({
+    banners: '/nature.jpg',
+    posters: '/nature.jpg',
+    businessCards: '/nature.jpg',
+    stickers: '/nature.jpg',
+    flyers: '/nature.jpg',
+    packaging: '/nature.jpg',
+    showcase: '/nature.jpg',
+  });
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.printLab) {
+          setPageImages(data.pageImages.printLab);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -49,7 +69,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.banners}
                   alt="Durable, high-impact banner printing for schools, events, and businesses with professional quality and weather-resistant materials"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -71,7 +91,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.posters}
                   alt="Custom poster printing in any size - from small handouts to massive wall pieces with vibrant colors and crisp detail"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -93,7 +113,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.businessCards}
                   alt="Professional business card printing with multiple finishes and styles - leaving the right impression for your business"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -115,7 +135,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.stickers}
                   alt="Custom stickers and decals in any shape, size, and finish - perfect for branding, giveaways, and promotional materials"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -137,7 +157,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.flyers}
                   alt="Professional flyer and brochure printing that spreads the word with clarity and style - perfect for marketing and informational materials"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -159,7 +179,7 @@ export default function PrintLabPage() {
             <div className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.packaging}
                   alt="Branded packaging and label printing to bring your products to life with professional quality and custom designs"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -254,7 +274,7 @@ export default function PrintLabPage() {
               <div key={item} className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
                 <div className="aspect-square relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages.showcase}
                     alt={`Print lab product showcase ${item} - Professional quality printing examples including banners, posters, business cards, stickers, and other print materials`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -355,7 +375,7 @@ export default function PrintLabPage() {
                 <Link href="/contact">Print With Us</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-foreground hover:bg-white hover:text-black text-lg px-8 py-4">
-                <Link href="tel:+15108281061">Call (510) 828-1061</Link>
+                <span className="text-foreground/70">(510) 828-1061</span>
               </Button>
             </div>
           </div>

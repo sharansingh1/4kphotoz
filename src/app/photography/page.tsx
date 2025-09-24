@@ -1,15 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Camera, Users, Trophy, Target, Palette, CheckCircle, Star, Clock, Shield, Download } from "lucide-react";
 
-export const metadata = {
-  title: "Professional Photography Services - 4kphotoz LLC",
-  description: "Professional photography for every occasion. From portraits and events to sports action and marketing campaigns. Enterprise-level services with blazing fast turnaround.",
-  keywords: "professional photography, portraits, events, sports photography, media day, marketing photography, California, Bay Area",
-};
-
 export default function PhotographyPage() {
+  const [pageImages, setPageImages] = useState({
+    portraits: '/nature.jpg',
+    events: '/nature.jpg',
+    mediaDay: '/nature.jpg',
+    sports: '/nature.jpg',
+    marketing: '/nature.jpg',
+    sportsPortraits: '/nature.jpg',
+    littleLeague: '/nature.jpg',
+  });
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.photography) {
+          setPageImages(data.pageImages.photography);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -50,7 +70,7 @@ export default function PhotographyPage() {
             <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.portraits}
                   alt="Professional portrait photography showcasing individual and group portraits with polished, professional look - perfect for seniors, couples, families"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -72,7 +92,7 @@ export default function PhotographyPage() {
             <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.events}
                   alt="Event photography capturing school dances, graduations, corporate gatherings and community celebrations - moments that matter most"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -94,7 +114,7 @@ export default function PhotographyPage() {
             <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.mediaDay}
                   alt="Complete athletic media day setups with professional lighting, backdrops, and custom graphics to showcase teams in style"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -120,7 +140,7 @@ export default function PhotographyPage() {
               <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
                 <div className="aspect-video relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages.sports}
                     alt="High-energy sports action photography covering games, tournaments, and competitions - freezing big plays and highlight moments"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -142,7 +162,7 @@ export default function PhotographyPage() {
               <div className="group bg-muted rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105 border border-border">
                 <div className="aspect-video relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages.marketing}
                     alt="Clean, creative marketing and branding photography helping schools, businesses, and organizations stand out on socials and in print"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -211,7 +231,7 @@ export default function PhotographyPage() {
 
               <div className="aspect-video relative rounded-lg overflow-hidden">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.sportsPortraits}
                   alt="Sports portrait photography setup with professional lighting and backdrops - capable of photographing 100+ athletes in a single day"
                   fill
                   className="object-cover"
@@ -253,7 +273,7 @@ export default function PhotographyPage() {
 
               <div className="aspect-video relative rounded-lg overflow-hidden">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.littleLeague}
                   alt="Little League photography with organized league-wide shoots, individual and team portraits delivered via private family galleries"
                   fill
                   className="object-cover"
@@ -325,7 +345,7 @@ export default function PhotographyPage() {
                 <Link href="/contact">Get In Touch</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-foreground text-foreground hover:bg-foreground hover:text-background text-lg px-8 py-4">
-                <Link href="tel:+15108281061">Call (510) 828-1061</Link>
+                <span className="text-foreground/70">(510) 828-1061</span>
               </Button>
             </div>
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Camera, Bell, CheckCircle, Clock, Download, HelpCircle, Mail } from "lucide-react";
@@ -17,6 +17,28 @@ export default function MoreauCatholicPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
+  const [pageImages, setPageImages] = useState({
+    athletics1: '/nature.jpg',
+    athletics2: '/nature.jpg',
+    athletics3: '/nature.jpg',
+    athletics4: '/nature.jpg',
+    athletics5: '/nature.jpg',
+    athletics6: '/nature.jpg',
+  });
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.moreauCatholic) {
+          setPageImages(data.pageImages.moreauCatholic);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,26 +46,39 @@ export default function MoreauCatholicPage() {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Moreau Catholic alerts form submitted:', formData);
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        parentName: '',
-        email: '',
-        phone: '',
-        athleteName: '',
-        sport: '',
-        graduationYear: ''
+    try {
+      const response = await fetch('/api/alerts/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      setConsentChecked(false);
-    }, 5000);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            parentName: '',
+            email: '',
+            phone: '',
+            athleteName: '',
+            sport: '',
+            graduationYear: ''
+          });
+          setConsentChecked(false);
+        }, 5000);
+      } else {
+        alert('Failed to sign up for alerts. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -91,7 +126,7 @@ export default function MoreauCatholicPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-6 h-auto">
-              <a href="https://gallery.4kphotoz.com" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center space-y-4">
+              <a href="/gallery" className="flex flex-col items-center space-y-4">
                 <Camera className="w-12 h-12" />
                 <div>
                   <div className="text-xl font-accent font-semibold">View Past Games</div>
@@ -131,7 +166,7 @@ export default function MoreauCatholicPage() {
               <div key={item} className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:bg-gray-700 transition-all duration-300 hover:scale-105">
                 <div className="aspect-video relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages[`athletics${item}` as keyof typeof pageImages]}
                     alt={`Moreau Catholic athletics action shot ${item} - Professional sports photography capturing team spirit, athletic performance, and school pride`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -394,7 +429,7 @@ export default function MoreauCatholicPage() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-foreground hover:bg-white hover:text-black text-lg px-8 py-4">
-                <a href="tel:+15108281061">Call (510) 828-1061</a>
+                <span className="text-foreground/70">(510) 828-1061</span>
               </Button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Camera,
@@ -14,6 +15,22 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const [highlightImages, setHighlightImages] = useState(['/nature.jpg', '/nature.jpg', '/nature.jpg', '/nature.jpg', '/nature.jpg', '/nature.jpg']);
+
+  useEffect(() => {
+    // Load admin highlight images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.highlightImages && data.highlightImages.length >= 6) {
+          setHighlightImages(data.highlightImages.slice(0, 6));
+        }
+      })
+      .catch(error => {
+        console.log('Error loading highlight images:', error);
+        // Keep default images on error
+      });
+  }, []);
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
       {/* Hero Section */}
@@ -26,11 +43,12 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            Your #1 <span className="italic text-primary">Photography</span> & Print Solution
+            Your #1 <span className="italic text-primary">Photography</span> & Print Solution in California
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Serving California with{" "}
+            Professional photography, graphic design, print lab, and photo booth services serving{" "}
+            <span className="font-semibold text-primary">Bay Area California</span> with{" "}
             <span className="font-semibold text-primary">blazing fast</span>{" "}
             turnaround times
           </p>
@@ -63,14 +81,14 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8">
               We are an{" "}
               <span className="italic text-primary">extension</span> of your
-              creative team
+              creative team in California
             </h2>
             <p className="text-lg font-body text-muted-foreground leading-relaxed">
-              At 4kphotoz, we bring photography, design, and print services
-              together under one roof. Founded in the Bay Area, we've partnered
+              At 4kphotoz LLC, we bring professional photography, graphic design, and print lab services
+              together under one roof in Hayward, California. Founded in the Bay Area, we've partnered
               with schools, organizations, and businesses across California to
               create visuals that stand out, tell stories, and make a lasting
-              impact.
+              impact. Our fast turnaround times and professional quality make us the preferred choice for photography and print services throughout the Bay Area.
             </p>
           </div>
         </div>
@@ -171,7 +189,7 @@ export default function Home() {
               >
                 <div className="aspect-square relative">
                   <Image
-                    src="/nature.jpg"
+                    src={highlightImages[(item - 1) % 6] || "/nature.jpg"}
                     alt={`Featured photography work ${item}`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -283,7 +301,7 @@ export default function Home() {
                 size="lg"
                 className="border-foreground text-foreground hover:bg-foreground hover:text-background text-lg px-8 py-4"
               >
-                <Link href="tel:+15108281061">Call (510) 828-1061</Link>
+                <span className="text-foreground/70">(510) 828-1061</span>
               </Button>
             </div>
           </div>

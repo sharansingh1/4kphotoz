@@ -1,15 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Camera, Monitor, User, Clock, Star, CheckCircle, Zap, Users, Smile, Gift } from "lucide-react";
 
-export const metadata = {
-  title: "Photo Booth Rental Services - 4kphotoz LLC",
-  description: "Instant memories, endless smiles. Modern, fun, and customizable photo booths for any event. Mirror booth and stationary booth options available.",
-  keywords: "photo booth rental, mirror booth, stationary booth, event photography, instant prints, California, Bay Area, party rental",
-};
-
 export default function PhotoBoothPage() {
+  const [pageImages, setPageImages] = useState({
+    mirrorBooth: '/nature.jpg',
+    stationaryBooth: '/nature.jpg',
+    events1: '/nature.jpg',
+    events2: '/nature.jpg',
+    events3: '/nature.jpg',
+    events4: '/nature.jpg',
+    events5: '/nature.jpg',
+    events6: '/nature.jpg',
+  });
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.photoBooth) {
+          setPageImages(data.pageImages.photoBooth);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -49,14 +70,14 @@ export default function PhotoBoothPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.mirrorBooth}
                   alt="Sleek, interactive mirror booth with touchscreen interface - modern photo booth rental with custom templates and unlimited instant prints"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-primary/90 text-foreground px-4 py-2 rounded-lg text-center font-accent font-semibold">
+                  <div className="bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center font-accent font-semibold border border-white/20">
                     $75/hour
                   </div>
                 </div>
@@ -98,14 +119,14 @@ export default function PhotoBoothPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.stationaryBooth}
                   alt="Photographer-run stationary booth with custom backdrops and professional lighting - traditional photo booth experience with digital delivery"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-background/40" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-primary/90 text-foreground px-4 py-2 rounded-lg text-center font-accent font-semibold">
+                  <div className="bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center font-accent font-semibold border border-white/20">
                     $100/hour
                   </div>
                 </div>
@@ -227,7 +248,7 @@ export default function PhotoBoothPage() {
               <div key={index} className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105">
                 <div className="aspect-video relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages[`events${index + 1}` as keyof typeof pageImages]}
                     alt={`Photo booth rental for ${event.name.toLowerCase()} - ${event.description} with professional photo booth services`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"

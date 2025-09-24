@@ -5,437 +5,316 @@ const LIGHTROOM_API_BASE = 'https://lr.adobe.io/v2';
 const ADOBE_CLIENT_ID = process.env.ADOBE_CLIENT_ID;
 const ADOBE_CLIENT_SECRET = process.env.ADOBE_CLIENT_SECRET;
 const ADOBE_ACCESS_TOKEN = process.env.ADOBE_ACCESS_TOKEN;
+const ADOBE_REFRESH_TOKEN = process.env.ADOBE_REFRESH_TOKEN;
 const ADOBE_CATALOG_ID = process.env.ADOBE_CATALOG_ID;
 
-interface AdobeImage {
-  id: string;
-  name: string;
-  url: string;
-  thumbnail: string;
-  created: string;
-  modified: string;
-  size: number;
-  tags?: string[];
-}
-
-interface AdobeAlbum {
-  id: string;
-  name: string;
-  assetCount: number;
-  coverImage?: string;
-  created: string;
-  modified: string;
-}
-
-// Get access token from Adobe (using stored token or client credentials)
+// Simple token refresh function
 async function getAdobeAccessToken(): Promise<string> {
-  console.log(`ADOBE_ACCESS_TOKEN exists: ${!!ADOBE_ACCESS_TOKEN}`);
-  console.log(`Token length: ${ADOBE_ACCESS_TOKEN?.length || 0}`);
+  if (ADOBE_REFRESH_TOKEN && ADOBE_CLIENT_ID && ADOBE_CLIENT_SECRET) {
+    try {
+      const refreshResponse = await fetch('https://ims-na1.adobelogin.com/ims/token/v3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          grant_type: 'refresh_token',
+          client_id: ADOBE_CLIENT_ID,
+          client_secret: ADOBE_CLIENT_SECRET,
+          refresh_token: ADOBE_REFRESH_TOKEN,
+        }),
+      });
+
+      if (refreshResponse.ok) {
+        const refreshData = await refreshResponse.json();
+        return refreshData.access_token;
+      }
+    } catch (error) {
+      console.error('Token refresh failed:', error);
+    }
+  }
   
-  // If we have a stored access token, use it directly (skip expiration check for now)
   if (ADOBE_ACCESS_TOKEN) {
-    console.log('Using existing access token from .env.local');
     return ADOBE_ACCESS_TOKEN;
   }
 
-  // If no token, try client credentials as fallback
-  if (!ADOBE_CLIENT_ID || !ADOBE_CLIENT_SECRET) {
-    throw new Error('Adobe API credentials not configured');
-  }
-
-  console.log('No access token found, attempting client credentials flow...');
-  const response = await fetch('https://ims-na1.adobelogin.com/ims/token/v3', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      grant_type: 'client_credentials',
-      client_id: ADOBE_CLIENT_ID,
-      client_secret: ADOBE_CLIENT_SECRET,
-      scope: 'lr_partner_apis,lr_partner_rendition_apis',
-    }),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error(`Adobe token request failed: ${response.status} ${response.statusText}`);
-    console.error(`Error response: ${errorText}`);
-    
-    // If client credentials fails, throw a more helpful error
-    if (response.status === 400) {
-      throw new Error('Adobe API configured as OAuth Web App - client credentials not supported. Please use OAuth flow or configure as Service Account.');
-    }
-    
-    throw new Error(`Failed to get Adobe access token: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  console.log('Successfully obtained new access token via client credentials');
-  return data.access_token;
+  throw new Error('No valid Adobe access token available');
 }
 
-// Helper function to clean album names
-function cleanAlbumName(name: string): string {
-  return name
-    .replace(/_/g, ' ')  // Replace underscores with spaces
-    .replace(/-/g, ' ')  // Replace dashes with spaces
-    .replace(/\s+/g, ' ') // Replace multiple spaces with single space
-    .trim(); // Remove leading/trailing spaces
-}
-
-// Helper function to check if album name looks like a date
-function isDateAlbum(name: string): boolean {
-  // Check for patterns like "April 21, 2023 12:56 PM" or "2022-12-01"
-  const datePatterns = [
-    /^\w+\s+\d{1,2},\s+\d{4}/,  // "April 21, 2023"
-    /^\d{4}-\d{2}-\d{2}/,        // "2022-12-01"
-    /^\d{1,2}\/\d{1,2}\/\d{4}/,  // "12/01/2022"
-  ];
-  
-  return datePatterns.some(pattern => pattern.test(name));
-}
-
-// Get all albums from the catalog
-async function getAllAlbums(accessToken: string): Promise<AdobeAlbum[]> {
-  if (!ADOBE_CATALOG_ID) {
-    throw new Error('Adobe Catalog ID not configured');
-  }
-
-  try {
-    const response = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums`, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'x-api-key': ADOBE_CLIENT_ID!,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch albums: ${response.statusText}`);
-    }
-
-    let responseText = await response.text();
-    
-    // Remove JSONP wrapper if present
-    if (responseText.startsWith('while (1) {}')) {
-      responseText = responseText.substring(12);
-    }
-    
-    const data = JSON.parse(responseText);
-    const albums: AdobeAlbum[] = [];
-
-    // Process each album
-    for (const albumData of data.resources || []) {
-      try {
-        const originalName = albumData.payload.name;
-        
-        // Skip date-based albums that don't exist in Lightroom
-        if (isDateAlbum(originalName)) {
-          console.log(`Skipping date album: ${originalName}`);
-          continue;
-        }
-        
-        // Clean the album name
-        const cleanName = cleanAlbumName(originalName);
-        
-        // Get actual asset count by checking the album
-        let assetCount = 0;
-        let coverImageUrl = undefined;
-        
-        try {
-          // Check if album has assets
-          const assetsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${albumData.id}/assets`, {
-            headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'x-api-key': ADOBE_CLIENT_ID!,
-            },
-          });
-          
-          if (assetsResponse.ok) {
-            let assetsText = await assetsResponse.text();
-            if (assetsText.startsWith('while (1) {}')) {
-              assetsText = assetsText.substring(12);
-            }
-            
-            const assetsData = JSON.parse(assetsText);
-            assetCount = assetsData.resources?.length || 0;
-            
-            // Get cover image from first asset if available
-            if (assetCount > 0 && assetsData.resources[0]?.asset?.id) {
-              const firstAssetId = assetsData.resources[0].asset.id;
-              coverImageUrl = `/api/gallery/image/${firstAssetId}/thumbnail`;
-            }
-          }
-        } catch (error) {
-          console.error(`Error checking assets for album ${albumData.id}:`, error);
-        }
-        
-        // Only include albums that have assets
-        if (assetCount > 0) {
-          albums.push({
-            id: albumData.id,
-            name: cleanName,
-            assetCount: assetCount,
-            coverImage: coverImageUrl,
-            created: albumData.created,
-            modified: albumData.updated,
-          });
-          
-          console.log(`Including album: ${cleanName} (${assetCount} assets)`);
-        } else {
-          console.log(`Skipping empty album: ${cleanName}`);
-        }
-      } catch (error) {
-        console.error(`Error processing album ${albumData.id}:`, error);
-      }
-    }
-
-    console.log(`Found ${albums.length} albums with images`);
-    return albums;
-  } catch (error) {
-    console.error('Error fetching albums:', error);
-    throw error;
-  }
-}
-
-// GET /api/gallery - Get all albums or images from a specific album
+// GET /api/gallery - Simple album and image fetching
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const action = searchParams.get('action') || 'albums';
     const albumId = searchParams.get('albumId');
 
-    if (action === 'albums') {
-      try {
-        const accessToken = await getAdobeAccessToken();
-        const albums = await getAllAlbums(accessToken);
-        return NextResponse.json({ albums });
-      } catch (error) {
-        console.error('Error fetching albums from Adobe:', error);
-        // Return mock albums for testing
-        const mockAlbums = [
-          {
-            id: 'mock-portraits',
-            name: '25 Karina Headshots',
-            assetCount: 15,
-            coverImage: '/nature.jpg',
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-          },
-          {
-            id: 'mock-events',
-            name: '24 Tiana Grad',
-            assetCount: 23,
-            coverImage: '/nature.jpg',
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-          },
-          {
-            id: 'mock-media-day',
-            name: '22 Winter Media Day',
-            assetCount: 18,
-            coverImage: '/nature.jpg',
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-          },
-          {
-            id: 'mock-sports',
-            name: '23 MCHS Baseball',
-            assetCount: 31,
-            coverImage: '/nature.jpg',
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-          },
-          {
-            id: 'mock-marketing',
-            name: '23 Moreau SB vs Kennedy',
-            assetCount: 12,
-            coverImage: '/nature.jpg',
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-          },
-        ];
-        return NextResponse.json({ albums: mockAlbums });
-      }
+    if (!ADOBE_CATALOG_ID) {
+      return NextResponse.json({ error: 'Adobe Catalog ID not configured' }, { status: 500 });
     }
 
-    if (action === 'images') {
-      // Return images in a specific album
-      if (!albumId) {
-        return NextResponse.json({ error: 'Album ID required' }, { status: 400 });
+    const accessToken = await getAdobeAccessToken();
+
+    if (action === 'albums') {
+      // Fetch all albums - single API call
+      const response = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'x-api-key': ADOBE_CLIENT_ID!,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch albums: ${response.statusText}`);
       }
 
-      try {
-        const accessToken = await getAdobeAccessToken();
-        console.log(`Using access token: ${accessToken.substring(0, 20)}...`);
+      let responseText = await response.text();
+      if (responseText.startsWith('while (1) {}')) {
+        responseText = responseText.substring(12);
+      }
+      
+      const data = JSON.parse(responseText);
+      const albums = [];
+
+      // Process albums and get cover images efficiently
+      const albumPromises = [];
+      
+      for (const albumData of data.resources || []) {
+        const albumName = albumData.payload.name;
         
-        if (!ADOBE_CATALOG_ID) {
-          throw new Error('Adobe Catalog ID not configured');
+        // Skip empty albums
+        if (albumData.payload.assetCount === 0) {
+          continue;
         }
 
-        const response = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${albumId}/assets`, {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'x-api-key': ADOBE_CLIENT_ID!,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch album images: ${response.statusText}`);
-        }
-
-        let responseText = await response.text();
-        
-        // Remove JSONP wrapper if present
-        if (responseText.startsWith('while (1) {}')) {
-          responseText = responseText.substring(12);
-        }
-        
-        const data = JSON.parse(responseText);
-        const images = data.resources || [];
-
-        console.log(`Found ${images.length} images in album ${albumId}`);
-        
-        if (images.length === 0) {
-          console.log(`Album ${albumId} is empty, returning empty array`);
-          return NextResponse.json({ images: [] });
-        }
-        
-        console.log('First few image IDs:', images.slice(0, 3).map((img: any) => img.id));
-        
-        // Log the structure of the first image to understand the data format
-        if (images.length > 0) {
-          console.log('First image structure:', JSON.stringify(images[0], null, 2));
-        }
-        
-        // Process images to get actual rendition URLs
-        const formattedImages = await Promise.all(images.map(async (image: any) => {
-          // Handle date properly
-          let imageDate = new Date().toISOString();
-          if (image.created && image.created !== '0000-00-00T00:00:00') {
-            imageDate = image.created;
-          } else if (image.updated && image.updated !== '0000-00-00T00:00:00') {
-            imageDate = image.updated;
-          }
+        // Create a promise for each album to get its cover image and accurate count
+        const albumPromise = (async () => {
+          let coverImageUrl = '/nature.jpg'; // Default fallback
+          let actualAssetCount = 0;
           
-          // Get the actual asset ID from the album asset object
-          const actualAssetId = image.asset?.id || image.id;
-          console.log(`Using asset ID: ${actualAssetId} (from album asset: ${image.id})`);
-          
-          // Get renditions for this asset
-          let thumbnailUrl = '/nature.jpg'; // fallback
-          let fullSizeUrl = '/nature.jpg'; // fallback
-          
+          // Get the actual asset count and first image from the album
           try {
-            // Try to get the asset details to see if it exists
-            const assetResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/assets/${actualAssetId}`, {
+            const assetsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${albumData.id}/assets`, {
               headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'x-api-key': ADOBE_CLIENT_ID!,
               },
             });
 
-            if (assetResponse.ok) {
-              // Handle JSONP wrapper like we do for albums
-              let responseText = await assetResponse.text();
-              if (responseText.startsWith('while (1) {}')) {
-                responseText = responseText.substring(12);
+            if (assetsResponse.ok) {
+              let assetsText = await assetsResponse.text();
+              if (assetsText.startsWith('while (1) {}')) {
+                assetsText = assetsText.substring(12);
               }
               
-              const assetData = JSON.parse(responseText);
-              console.log(`Asset ${actualAssetId} exists, payload:`, assetData.payload?.filename || 'no filename');
+              const assetsData = JSON.parse(assetsText);
+              const assets = assetsData.resources || [];
+              actualAssetCount = assets.length;
               
-              // If the asset exists, use our proxy
-              thumbnailUrl = `/api/gallery/image/${actualAssetId}/thumbnail`;
-              fullSizeUrl = `/api/gallery/image/${actualAssetId}/fullsize`;
-              console.log(`Asset ${actualAssetId} exists, using proxy for images`);
-            } else {
-              console.log(`Asset ${actualAssetId} not accessible: ${assetResponse.status}`);
+              console.log(`Album ${albumName} has ${actualAssetCount} assets`);
+              
+              if (assets.length > 0) {
+                const firstAsset = assets[0];
+                const assetId = firstAsset.asset?.id || firstAsset.id;
+                
+                if (assetId) {
+                  coverImageUrl = `/api/gallery/image/${assetId}/thumbnail`;
+                  console.log(`Using first asset ${assetId} as cover for album: ${albumName}`);
+                }
+              }
             }
           } catch (error) {
-            console.error(`Error checking asset ${actualAssetId}:`, error);
+            console.log(`Error fetching assets for album ${albumName}:`, error);
+            // Fallback to album's designated cover image if asset fetch fails
+            if (albumData.payload.cover?.id) {
+              coverImageUrl = `/api/gallery/image/${albumData.payload.cover.id}/thumbnail`;
+              console.log(`Using album cover ID: ${albumData.payload.cover.id} for ${albumName}`);
+            }
+          }
+
+          return {
+            id: albumData.id,
+            name: albumName.replace(/_/g, ' ').replace(/-/g, ' ').trim(),
+            assetCount: actualAssetCount,
+            coverImage: coverImageUrl,
+            created: albumData.created,
+            modified: albumData.updated,
+          };
+        })();
+        
+        albumPromises.push(albumPromise);
+      }
+
+      // Wait for all album processing to complete
+      const albumResults = await Promise.all(albumPromises);
+      albums.push(...albumResults);
+
+      return NextResponse.json({ albums });
+    }
+
+    if (action === 'images' && albumId) {
+      // Fetch images for specific album - single API call with limit and offset
+      const limit = searchParams.get('limit') || '20';
+      const offset = parseInt(searchParams.get('offset') || '0');
+      
+      // For better pagination, try different approaches
+      let apiUrl = `${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${albumId}/assets?limit=${limit}`;
+      
+      // If offset is 0, don't add offset parameter (get first batch)
+      if (offset > 0) {
+        apiUrl += `&offset=${offset}`;
+      }
+      
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'x-api-key': ADOBE_CLIENT_ID!,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch album images: ${response.statusText}`);
+      }
+
+      let responseText = await response.text();
+      if (responseText.startsWith('while (1) {}')) {
+        responseText = responseText.substring(12);
+      }
+      
+      const data = JSON.parse(responseText);
+      const images = [];
+
+        // Process images without testing accessibility
+        for (const image of data.resources || []) {
+          const assetId = image.asset?.id || image.id;
+          
+          console.log(`Processing image: ${assetId}, filename: ${image.payload?.filename}`);
+          
+          // Create a professional title from filename or use a generic one
+          let title = 'Professional Photography';
+          if (image.payload?.filename) {
+            // Remove file extension and clean up the filename
+            const cleanFilename = image.payload.filename
+              .replace(/\.[^/.]+$/, '') // Remove file extension
+              .replace(/[-_]/g, ' ') // Replace dashes and underscores with spaces
+              .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+              .trim();
+            
+            if (cleanFilename && cleanFilename.length > 0) {
+              title = cleanFilename;
+            }
           }
           
-          return {
-            id: actualAssetId, // Use the actual asset ID
-            url: fullSizeUrl,
-            thumbnail: thumbnailUrl,
-            title: image.payload?.filename || image.payload?.name || `Image ${actualAssetId.substring(0, 8)}`,
-            description: `Professional photography`,
-            date: imageDate,
-            tags: ['professional', 'photography'],
-          };
-        }));
+          // Format the date properly
+          let formattedDate = 'Date not available';
+          const dateValue = image.created || image.updated;
+          if (dateValue && dateValue !== '0000-00-00T00:00:00') {
+            try {
+              const date = new Date(dateValue);
+              if (!isNaN(date.getTime())) {
+                formattedDate = date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                });
+              }
+            } catch (error) {
+              console.log(`Error formatting date for ${assetId}:`, error);
+            }
+          }
+          
+          images.push({
+            id: assetId,
+            url: `/api/gallery/image/${assetId}/fullsize`,
+            thumbnail: `/api/gallery/image/${assetId}/thumbnail`,
+            title: title,
+            description: 'Professional photography services',
+            date: formattedDate,
+            tags: ['photography'],
+          });
+        }
 
-        return NextResponse.json({ images: formattedImages });
-      } catch (error) {
-        console.error('Error fetching images:', error);
-        // Return mock images for testing
-        const mockImages = Array.from({ length: 12 }, (_, i) => ({
-          id: `${albumId}-${i + 1}`,
-          url: '/nature.jpg',
-          thumbnail: '/nature.jpg',
-          title: `Image ${i + 1}`,
-          description: `Professional photography`,
-          date: new Date().toISOString(),
-          tags: ['professional', 'photography'],
-        }));
-        return NextResponse.json({ images: mockImages });
+      return NextResponse.json({ images });
+    }
+
+    if (action === 'all-images') {
+      console.log('Fetching all images for admin panel');
+      
+      // Get all albums first
+      const albumsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'x-api-key': ADOBE_CLIENT_ID!,
+        },
+      });
+
+      if (!albumsResponse.ok) {
+        console.error('Failed to fetch albums:', albumsResponse.status, albumsResponse.statusText);
+        return NextResponse.json({ error: 'Failed to fetch albums' }, { status: albumsResponse.status });
       }
+
+      let albumsText = await albumsResponse.text();
+      if (albumsText.startsWith('while (1) {}')) {
+        albumsText = albumsText.substring(12);
+      }
+
+      const albumsData = JSON.parse(albumsText);
+      const allImages = [];
+
+      // Fetch images from first few albums to avoid too many API calls
+      const albumsToProcess = albumsData.resources?.slice(0, 10) || [];
+      
+      for (const album of albumsToProcess) {
+        if (album.payload.assetCount === 0) continue;
+        
+        try {
+          const assetsResponse = await fetch(`${LIGHTROOM_API_BASE}/catalogs/${ADOBE_CATALOG_ID}/albums/${album.id}/assets?limit=20`, {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+              'x-api-key': ADOBE_CLIENT_ID!,
+            },
+          });
+
+          if (assetsResponse.ok) {
+            let assetsText = await assetsResponse.text();
+            if (assetsText.startsWith('while (1) {}')) {
+              assetsText = assetsText.substring(12);
+            }
+            const assetsData = JSON.parse(assetsText);
+            
+            for (const image of assetsData.resources || []) {
+              const assetId = image.asset?.id || image.id;
+              let title = 'Professional Photography';
+              if (image.payload?.filename) {
+                const cleanFilename = image.payload.filename
+                  .replace(/\.[^/.]+$/, '')
+                  .replace(/[-_]/g, ' ')
+                  .replace(/\s+/g, ' ')
+                  .trim();
+                if (cleanFilename && cleanFilename.length > 0) {
+                  title = cleanFilename;
+                }
+              }
+              
+              allImages.push({
+                id: assetId,
+                url: `/api/gallery/image/${assetId}/fullsize`,
+                thumbnail: `/api/gallery/image/${assetId}/thumbnail`,
+                title: title,
+                albumName: album.payload.name,
+              });
+            }
+          }
+        } catch (error) {
+          console.log(`Error fetching images from album ${album.payload.name}:`, error);
+        }
+      }
+
+      return NextResponse.json({ images: allImages });
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (error) {
     console.error('Gallery API error:', error);
-    
-    // Return mock data if Adobe API is not configured
-    if (error instanceof Error && error.message.includes('not configured')) {
-      const mockAlbums = [
-        {
-          id: 'mock-portraits',
-          name: '25 Karina Headshots',
-          assetCount: 15,
-          coverImage: '/nature.jpg',
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
-        {
-          id: 'mock-events',
-          name: '24 Tiana Grad',
-          assetCount: 23,
-          coverImage: '/nature.jpg',
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
-        {
-          id: 'mock-media-day',
-          name: '22 Winter Media Day',
-          assetCount: 18,
-          coverImage: '/nature.jpg',
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
-        {
-          id: 'mock-sports',
-          name: '23 MCHS Baseball',
-          assetCount: 31,
-          coverImage: '/nature.jpg',
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
-        {
-          id: 'mock-marketing',
-          name: '23 Moreau SB vs Kennedy',
-          assetCount: 12,
-          coverImage: '/nature.jpg',
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
-      ];
-
-      return NextResponse.json({ albums: mockAlbums });
-    }
-
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

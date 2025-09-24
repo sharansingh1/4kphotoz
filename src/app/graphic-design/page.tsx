@@ -1,15 +1,33 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Palette, Image as ImageIcon, Megaphone, Instagram, Zap, CheckCircle, Star, Users, Lightbulb } from "lucide-react";
 
-export const metadata = {
-  title: "Professional Graphic Design Services - 4kphotoz LLC",
-  description: "Unlimited Creativity. Unlimited Revisions. Custom logo designs, posters, banners, and social media graphics that make your message pop.",
-  keywords: "graphic design, logo design, posters, banners, social media graphics, branding, California, Bay Area",
-};
-
 export default function GraphicDesignPage() {
+  const [pageImages, setPageImages] = useState({
+    logos: '/nature.jpg',
+    posters: '/nature.jpg',
+    banners: '/nature.jpg',
+    socialMedia: '/nature.jpg',
+    portfolio: '/nature.jpg',
+  });
+
+  useEffect(() => {
+    // Load admin-configured images
+    fetch('/api/admin/settings')
+      .then(response => response.json())
+      .then(data => {
+        if (data.pageImages?.graphicDesign) {
+          setPageImages(data.pageImages.graphicDesign);
+        }
+      })
+      .catch(error => {
+        console.log('Error loading page images:', error);
+      });
+  }, []);
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -48,7 +66,7 @@ export default function GraphicDesignPage() {
             <div className="group bg-muted border border-border rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.logos}
                   alt="Custom logo design services creating memorable brand identities that represent your brand and leave a lasting impression"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -70,7 +88,7 @@ export default function GraphicDesignPage() {
             <div className="group bg-muted border border-border rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.posters}
                   alt="Bold, eye-catching poster designs for schools, events, and businesses with professional quality and creative impact"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -92,7 +110,7 @@ export default function GraphicDesignPage() {
             <div className="group bg-muted border border-border rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.banners}
                   alt="Large-scale banner designs that stand out anywhere - perfect for events, schools, and businesses with maximum visual impact"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -114,7 +132,7 @@ export default function GraphicDesignPage() {
             <div className="group bg-muted border border-border rounded-2xl overflow-hidden hover:bg-muted/80 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/nature.jpg"
+                  src={pageImages.socialMedia}
                   alt="Engaging social media graphics tailored for Instagram, Facebook, TikTok, and more - designed to maximize engagement and brand visibility"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -209,7 +227,7 @@ export default function GraphicDesignPage() {
               <div key={item} className="group relative overflow-hidden rounded-2xl bg-muted border border-border hover:bg-muted/80 transition-all duration-300 hover:scale-105">
                 <div className="aspect-square relative">
                   <Image
-                    src="/nature.jpg"
+                    src={pageImages.portfolio}
                     alt={`Graphic design portfolio item ${item} - Professional quality design work showcasing logos, posters, banners, or social media graphics`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -355,7 +373,7 @@ export default function GraphicDesignPage() {
                 <Link href="/contact">Design With Us</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white text-foreground hover:bg-white hover:text-black text-lg px-8 py-4">
-                <Link href="tel:+15108281061">Call (510) 828-1061</Link>
+                <span className="text-foreground/70">(510) 828-1061</span>
               </Button>
             </div>
           </div>
