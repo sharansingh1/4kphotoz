@@ -1,22 +1,10 @@
-import { Deta } from 'deta';
-
-// Initialize Deta Base (with fallback)
-let deta: any = null;
+// Simple in-memory storage for now
+// TODO: Add Deta Base integration later
 let adminDB: any = null;
 let alertsDB: any = null;
 
-if (process.env.DETA_PROJECT_KEY) {
-  try {
-    deta = Deta(process.env.DETA_PROJECT_KEY);
-    adminDB = deta.Base('admin_data');
-    alertsDB = deta.Base('alert_signups');
-  } catch (error) {
-    console.error('Failed to initialize Deta:', error);
-  }
-}
-
 // Fallback in-memory storage
-let fallbackData: AdminSettings = defaultSettings;
+let fallbackData: AdminSettings;
 let fallbackSignups: AlertSignup[] = [];
 
 interface AlertSignup {
@@ -137,6 +125,9 @@ const defaultSettings: AdminSettings = {
     },
   },
 };
+
+// Initialize fallback data
+fallbackData = defaultSettings;
 
 // Admin Settings Functions
 export const getAdminSettings = async (): Promise<AdminSettings> => {
