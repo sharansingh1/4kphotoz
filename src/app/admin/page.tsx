@@ -215,7 +215,7 @@ export default function AdminPage() {
   const toggleAlbumVisibility = (albumId: string) => {
     setVisibleAlbums(prev => ({
       ...prev,
-      [albumId]: !prev[albumId]
+      [albumId]: !(prev[albumId] === true) // Default to false (hidden), toggle to true (visible)
     }));
   };
 
@@ -372,13 +372,13 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <Button
-                    variant={visibleAlbums[album.id] ? "default" : "outline"}
+                    variant={visibleAlbums[album.id] === true ? "default" : "outline"}
                     size="sm"
                     onClick={() => toggleAlbumVisibility(album.id)}
                     className="flex items-center space-x-2"
                   >
-                    {visibleAlbums[album.id] ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                    <span>{visibleAlbums[album.id] ? 'Visible' : 'Hidden'}</span>
+                    {visibleAlbums[album.id] === true ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                    <span>{visibleAlbums[album.id] === true ? 'Visible' : 'Hidden'}</span>
                   </Button>
                 </div>
               ))}

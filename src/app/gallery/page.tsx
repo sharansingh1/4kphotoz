@@ -98,8 +98,8 @@ export default function GalleryPage() {
       if (data.albums) {
         // Filter albums based on admin visibility settings
         const filteredAlbums = data.albums.filter((album: Album) => {
-          // Show album if it's not explicitly hidden (default to visible)
-          return visibleAlbums[album.id] !== false;
+          // Show album only if it's explicitly set to visible (default to hidden)
+          return visibleAlbums[album.id] === true;
         });
         
         setAlbums(filteredAlbums);
