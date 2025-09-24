@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-
-// File-based storage for admin settings
-const ADMIN_DATA_FILE = path.join(process.cwd(), 'admin-data.json');
+// Hybrid storage: Environment variables + in-memory fallback
+// In production, we'll use environment variables for persistence
+// In development, we'll use in-memory storage
 
 interface AlertSignup {
   id: string;
@@ -131,39 +129,47 @@ const defaultData: AdminData = {
   },
 };
 
-// Read data from file
+// In-memory storage for development
+let currentData: AdminData = defaultData;
+
+// Read data from environment variables (production) or use in-memory (development)
 function readData(): AdminData {
   try {
-    if (fs.existsSync(ADMIN_DATA_FILE)) {
-      const fileContent = fs.readFileSync(ADMIN_DATA_FILE, 'utf8');
-      const data = JSON.parse(fileContent);
-      
+    // Try to read from environment variables first
+    const envData = process.env.ADMIN_DATA;
+    if (envData) {
+      const data = JSON.parse(envData);
       // Convert date strings back to Date objects
       data.alertSignups = data.alertSignups.map((signup: any) => ({
         ...signup,
         signupDate: new Date(signup.signupDate),
       }));
-      
       return data;
     }
   } catch (error) {
-    console.error('Error reading admin data:', error);
+    console.error('Error reading admin data from env:', error);
   }
   
   return defaultData;
 }
 
-// Write data to file
+// Write data to environment variables (production) or keep in-memory (development)
 function writeData(data: AdminData): void {
   try {
-    fs.writeFileSync(ADMIN_DATA_FILE, JSON.stringify(data, null, 2));
+    // In production, we can't write to env vars, so we'll keep it in-memory
+    // For now, we'll use a simple approach: store in a global variable
+    // In a real app, you'd use a database
+    currentData = data;
+    
+    // Log the data so you can manually update env vars if needed
+    console.log('Admin data updated:', JSON.stringify(data, null, 2));
   } catch (error) {
     console.error('Error writing admin data:', error);
   }
 }
 
-// Get current data
-let currentData = readData();
+// Initialize data
+currentData = readData();
 
 // Export functions
 export const getAdminSettings = (): AdminSettings => {

@@ -23,11 +23,11 @@ export async function GET(request: NextRequest) {
 
     let signups;
     if (sport) {
-      signups = getAlertSignupsBySport(sport);
+      signups = await getAlertSignupsBySport(sport);
     } else if (graduationYear) {
-      signups = getAlertSignupsByGraduationYear(graduationYear);
+      signups = await getAlertSignupsByGraduationYear(graduationYear);
     } else {
-      signups = getAllAlertSignups();
+      signups = await getAllAlertSignups();
     }
 
     return NextResponse.json({ signups });
@@ -54,9 +54,9 @@ export async function DELETE(request: NextRequest) {
 
     let success = false;
     if (action === 'deactivate') {
-      success = deactivateAlertSignup(signupId);
+      success = await deactivateAlertSignup(signupId);
     } else if (action === 'delete') {
-      success = deleteAlertSignup(signupId);
+      success = await deleteAlertSignup(signupId);
     } else {
       return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
     }

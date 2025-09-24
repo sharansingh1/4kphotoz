@@ -1,2 +1,2 @@
-// Re-export from the new persistent storage system
-export * from './admin-storage';
+// Re-export from the new database storage system
+export * from './database';

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Add the signup
-    const signup = addAlertSignup({
+    const signup = await addAlertSignup({
       parentName,
       email,
       phone,

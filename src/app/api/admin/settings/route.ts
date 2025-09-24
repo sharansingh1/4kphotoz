@@ -16,7 +16,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const settings = getAdminSettings();
+    const settings = await getAdminSettings();
     return NextResponse.json(settings);
   } catch (error) {
     console.error('Error fetching admin settings:', error);
@@ -36,20 +36,20 @@ export async function POST(request: NextRequest) {
     const { highlightImages, visibleAlbums, pageImages } = body;
 
     if (highlightImages) {
-      updateHighlightImages(highlightImages);
+      await updateHighlightImages(highlightImages);
     }
 
     if (visibleAlbums) {
-      setAlbumVisibility(visibleAlbums);
+      await setAlbumVisibility(visibleAlbums);
     }
 
     if (pageImages) {
       // Update individual page images
-      Object.keys(pageImages).forEach(page => {
-        Object.keys(pageImages[page]).forEach(section => {
-          updatePageImage(page, section, pageImages[page][section]);
-        });
-      });
+      for (const page of Object.keys(pageImages)) {
+        for (const section of Object.keys(pageImages[page])) {
+          await updatePageImage(page, section, pageImages[page][section]);
+        }
+      }
     }
 
     return NextResponse.json({ success: true });
