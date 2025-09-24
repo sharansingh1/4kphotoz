@@ -301,7 +301,7 @@ export default function PrintLabPage() {
             </h2>
             <p className="text-lg text-foreground/70 font-body mb-8">
               If you can think of it, we can print it. From custom sizes to unique materials, 
-              we're equipped to handle any printing challenge you throw our way.
+              we&apos;re equipped to handle any printing challenge you throw our way.
             </p>
             <div className="bg-background rounded-2xl p-8 mb-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-foreground/70 font-body">

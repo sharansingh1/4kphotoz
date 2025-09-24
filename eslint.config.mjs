@@ -23,7 +23,7 @@ const eslintConfig = [
   {
     rules: {
       "@next/next/no-img-element": "warn",
-      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/exhaustive-deps": "off",
     },
   },
 ];

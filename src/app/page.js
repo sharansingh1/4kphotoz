@@ -85,7 +85,7 @@ export default function Home() {
             </h2>
             <p className="text-lg font-body text-muted-foreground leading-relaxed">
               At 4kphotoz LLC, we bring professional photography, graphic design, and print lab services
-              together under one roof in Hayward, California. Founded in the Bay Area, we've partnered
+              together under one roof in Hayward, California. Founded in the Bay Area, we&apos;ve partnered
               with schools, organizations, and businesses across California to
               create visuals that stand out, tell stories, and make a lasting
               impact. Our fast turnaround times and professional quality make us the preferred choice for photography and print services throughout the Bay Area.
@@ -269,7 +269,7 @@ export default function Home() {
                 Built for Any Size Project
               </h3>
               <p className="text-muted-foreground font-body">
-                Whether it's a single banner or a full-school media day, our
+                Whether it&apos;s a single banner or a full-school media day, our
                 team scales to match your vision.
               </p>
             </div>

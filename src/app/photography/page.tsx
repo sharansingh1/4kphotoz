@@ -217,7 +217,7 @@ export default function PhotographyPage() {
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <p className="text-muted-foreground font-body">Secure, individual family access to each athlete's photos</p>
+                  <p className="text-muted-foreground font-body">Secure, individual family access to each athlete&apos;s photos</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />

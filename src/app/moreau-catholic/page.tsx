@@ -120,7 +120,7 @@ export default function MoreauCatholicPage() {
               Quick Access
             </h2>
             <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
-              Choose what you'd like to do
+              Choose what you&apos;d like to do
             </p>
           </div>
 
@@ -192,7 +192,7 @@ export default function MoreauCatholicPage() {
               Get Alerts for Future Games
             </h2>
             <p className="text-lg text-foreground/70 font-body max-w-2xl mx-auto">
-              Stay updated on new photo galleries and never miss a moment of your athlete's season
+              Stay updated on new photo galleries and never miss a moment of your athlete&apos;s season
             </p>
           </div>
 
@@ -390,7 +390,7 @@ export default function MoreauCatholicPage() {
                 <div>
                   <h3 className="text-xl font-accent font-semibold text-foreground mb-4">How will I know when my event is ready?</h3>
                   <p className="text-foreground/70 font-body">
-                    We&apos;ll notify you by text and email the moment your event's gallery goes live. No need to keep checking!
+                    We&apos;ll notify you by text and email the moment your event&apos;s gallery goes live. No need to keep checking!
                   </p>
                 </div>
               </div>
