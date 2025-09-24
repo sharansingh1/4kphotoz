@@ -125,7 +125,7 @@ export default function ContactPage() {
               Get In Touch
             </h1>
             <p className="text-xl md:text-2xl text-foreground/70 font-body mb-8">
-              Ready to bring your vision to life? Let's discuss your project.
+              Ready to bring your vision to life? Let&apos;s discuss your project.
             </p>
           </div>
         </div>
@@ -228,7 +228,7 @@ export default function ContactPage() {
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                   <h3 className="text-2xl font-display font-bold text-foreground mb-2">Message Sent!</h3>
                   <p className="text-foreground/70 font-body">
-                    Thank you for your message. We'll get back to you within 24 hours.
+                      Thank you for your message. We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
               ) : (

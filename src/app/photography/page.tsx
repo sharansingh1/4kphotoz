@@ -338,7 +338,7 @@ export default function PhotographyPage() {
               Ready to Capture Your Moments?
             </h2>
             <p className="text-lg font-body text-muted-foreground mb-12">
-              Let's discuss your photography needs and create something amazing together
+              Let&apos;s discuss your photography needs and create something amazing together
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-4">

@@ -285,7 +285,7 @@ export default function Home() {
               Ready to Get Started?
             </h2>
             <p className="text-lg font-body text-muted-foreground mb-12">
-              Let's discuss your project and bring your vision to life
+              Let&apos;s discuss your project and bring your vision to life
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

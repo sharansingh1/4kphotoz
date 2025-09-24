@@ -199,9 +199,9 @@ export default function MoreauCatholicPage() {
           {isSubmitted ? (
             <div className="bg-green-900/20 border border-green-500/50 rounded-2xl p-8 text-center">
               <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-display font-bold text-foreground mb-2">You're on the list!</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-2">you&apos;re on the list!</h3>
               <p className="text-foreground/70 font-body">
-                We'll notify you as soon as new galleries are posted.
+                We&apos;ll notify you as soon as new galleries are posted.
               </p>
             </div>
           ) : (
@@ -390,7 +390,7 @@ export default function MoreauCatholicPage() {
                 <div>
                   <h3 className="text-xl font-accent font-semibold text-foreground mb-4">How will I know when my event is ready?</h3>
                   <p className="text-foreground/70 font-body">
-                    We'll notify you by text and email the moment your event's gallery goes live. No need to keep checking!
+                    We&apos;ll notify you by text and email the moment your event's gallery goes live. No need to keep checking!
                   </p>
                 </div>
               </div>

@@ -192,7 +192,7 @@ export default function GraphicDesignPage() {
               </div>
               <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Refinement</h3>
               <p className="text-muted-foreground font-body text-sm">
-                Unlimited revisions until you're completely satisfied with the final design.
+                Unlimited revisions until you&apos;re completely satisfied with the final design.
               </p>
             </div>
 
@@ -264,7 +264,7 @@ export default function GraphicDesignPage() {
               </div>
               <h3 className="text-xl font-accent font-semibold text-foreground mb-4">Unlimited Revisions</h3>
               <p className="text-foreground/70 font-body">
-                We keep refining until you're 100% satisfied with the final design.
+                We keep refining until you&apos;re 100% satisfied with the final design.
               </p>
             </div>
 
@@ -300,7 +300,7 @@ export default function GraphicDesignPage() {
             </h2>
             <p className="text-lg text-foreground/70 font-body mb-8">
               Looking for something unique? We do it all. From business cards to billboards, 
-              from web graphics to vehicle wraps, let us know what you're looking for.
+              from web graphics to vehicle wraps, let us know what you&apos;re looking for.
             </p>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-foreground/70 font-body">
@@ -366,7 +366,7 @@ export default function GraphicDesignPage() {
               Ready to Bring Your Vision to Life?
             </h2>
             <p className="text-lg text-foreground/70 font-body mb-12">
-              Let's create something amazing together with unlimited creativity and revisions
+              Let&apos;s create something amazing together with unlimited creativity and revisions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-4">
