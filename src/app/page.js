@@ -33,6 +33,25 @@ export default function Home() {
   }, []);
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
+      {/* Little League Parents Banner */}
+      <div className="pt-16 lg:pt-20">
+        <div className="bg-gradient-to-r from-blue-500/10 via-blue-600/20 to-blue-700/10 backdrop-blur-sm border-b border-blue-200/20 py-4 px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-sm md:text-base font-medium text-foreground">
+              <span className="font-semibold text-blue-600">Little League Parents:</span> Looking to download your kids photos? 
+              <a 
+                href="https://store.4kphotoz.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="ml-2 inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-md"
+              >
+                Click here!
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Blue Gradient Blob */}
@@ -201,7 +220,7 @@ export default function Home() {
                       variant="outline"
                       className="border-foreground text-foreground hover:bg-foreground hover:text-background"
                     >
-                      <Link href="/gallery">View Gallery</Link>
+                      <Link href="https://gallery.4kphotoz.com/">View Gallery</Link>
                     </Button>
                   </div>
                 </div>
@@ -216,7 +235,7 @@ export default function Home() {
               variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             >
-              <Link href="/gallery">View All Work</Link>
+              <Link href="https://gallery.4kphotoz.com/">View All Work</Link>
             </Button>
           </div>
         </div>

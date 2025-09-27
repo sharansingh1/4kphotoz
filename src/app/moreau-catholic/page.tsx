@@ -126,7 +126,7 @@ export default function MoreauCatholicPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Button asChild size="lg" className="gradient-bg hover:opacity-90 text-lg px-8 py-6 h-auto">
-              <a href="/gallery" className="flex flex-col items-center space-y-4">
+              <a href="https://gallery.4kphotoz.com/" className="flex flex-col items-center space-y-4">
                 <Camera className="w-12 h-12" />
                 <div>
                   <div className="text-xl font-accent font-semibold">View Past Games</div>
