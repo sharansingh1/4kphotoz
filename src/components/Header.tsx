@@ -21,7 +21,7 @@ export default function Header() {
 
   const navigation = [
     { name: 'Gallery', href: 'https://gallery.4kphotoz.com/' },
-    { name: 'Photography', href: '/photography' },
+    // { name: 'Photography', href: '/photography' },
     { name: 'Graphic Design', href: '/graphic-design' },
     { name: 'Print Lab', href: '/print-lab' },
     { name: 'Photo Booth', href: '/photo-booth' },
