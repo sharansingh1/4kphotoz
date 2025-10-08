@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         subject: `New Gallery Available - ${eventName || 'Moreau Catholic Athletics'}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #2563eb;">New Gallery Available!</h2>
+            <h2 style="color: #FF6B10;">New Gallery Available!</h2>
             <p>Hi ${signup.parentName},</p>
             <p>${personalizedMessage}</p>
             <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
               ${signup.graduationYear ? `<p><strong>Graduation Year:</strong> ${signup.graduationYear}</p>` : ''}
             </div>
             <div style="text-align: center; margin: 30px 0;">
-              <a href="${galleryUrl}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">View Gallery</a>
+              <a href="${galleryUrl}" style="background-color: #FF6B10; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">View Gallery</a>
             </div>
             <p style="color: #6b7280; font-size: 14px;">
               This alert was sent because you signed up for notifications on the Moreau Catholic page. 
@@ -103,4 +103,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+
 

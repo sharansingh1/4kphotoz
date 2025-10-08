@@ -7,19 +7,19 @@
 :root {
   --background: #ffffff;
   --foreground: #1f2937;
-  --primary: #2563eb;
+  --primary: #FF6B10;
   --primary-foreground: #ffffff;
   --secondary: #f8fafc;
   --secondary-foreground: #1f2937;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-  --accent: #2563eb;
+  --accent: #FF6B10;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
   --input: #f8fafc;
-  --ring: #2563eb;
+  --ring: #FF6B10;
   --radius: 0.5rem;
   
   /* Professional Font Variables */
@@ -109,7 +109,7 @@ body {
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+    background: linear-gradient(135deg, #FF6B10 0%, #FF8A3D 50%, #FFA366 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -117,18 +117,18 @@ body {
   }
   
   .gradient-bg {
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #FF6B10 0%, #FF8A3D 100%);
     color: var(--primary-foreground);
   }
   
   .gradient-bg:hover {
-    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    background: linear-gradient(135deg, #E55A00 0%, #FF6B10 100%);
   }
   
   .glass {
     backdrop-filter: blur(16px);
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(255, 107, 16, 0.2);
   }
   
   .animate-fade-in {
@@ -200,10 +200,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
+  background: #FF6B10;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: #E55A00;
 }

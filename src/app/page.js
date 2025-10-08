@@ -35,15 +35,15 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
       {/* Little League Parents Banner */}
       <div className="pt-16 lg:pt-20">
-        <div className="bg-gradient-to-r from-blue-500/10 via-blue-600/20 to-blue-700/10 backdrop-blur-sm border-b border-blue-200/20 py-4 px-4 text-center">
+        <div className="bg-gradient-to-r from-orange-500/10 via-orange-600/20 to-orange-700/10 backdrop-blur-sm border-b border-orange-200/20 py-4 px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <p className="text-sm md:text-base font-medium text-foreground">
-              <span className="font-semibold text-blue-600">Little League Parents:</span> Looking to download your kids photos? 
+              <span className="font-semibold text-orange-600">Little League Parents:</span> Looking to download your kids photos? 
               <a 
                 href="https://store.4kphotoz.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="ml-2 inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-md"
+                className="ml-2 inline-flex items-center px-3 py-1 bg-orange-600 text-white rounded-full text-sm font-semibold hover:bg-orange-700 transition-all duration-200 hover:scale-105 shadow-md"
               >
                 Click here!
               </a>
@@ -54,9 +54,9 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Blue Gradient Blob */}
+        {/* Orange Gradient Blob */}
         <div className="absolute inset-0 z-0 flex items-center justify-center">
-          <div className="w-[800px] h-[800px] bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 rounded-full blur-[180px] opacity-70 animate-pulse" />
+          <div className="w-[800px] h-[800px] bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 rounded-full blur-[180px] opacity-70 animate-pulse" />
         </div>
 
         {/* Content */}
@@ -80,9 +80,9 @@ export default function Home() {
               })
             }
             className="inline-flex items-center px-10 py-4 text-lg font-semibold rounded-full 
-             bg-gradient-to-r from-blue-500 to-blue-600 
-             hover:from-blue-600 hover:to-blue-700 
-             shadow-lg shadow-blue-500/30
+             bg-gradient-to-r from-orange-500 to-orange-600 
+             hover:from-orange-600 hover:to-orange-700 
+             shadow-lg shadow-orange-500/30
              transition-all duration-500 ease-out 
              transform hover:-translate-y-1 hover:scale-105"
           >
